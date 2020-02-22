@@ -36,9 +36,9 @@
                 break;
 			case UPDATE_CMD:
 				#region Client update
-				//inst.Player.Unit.
-				obj_unit.to = buffer_read(buff, buffer_s8)
-				show_debug_message("scr_server_recieved Update_CMD: " + string(inst.Player.Unit.to))
+				inst.Player.to = buffer_read(buff, buffer_s8)
+//				show_debug_message("scr_server_recieved Update_CMD: " + string(inst.Player.to))
+
 				/*
 				//read amount of players
 				var count = buffer_read(buff, buffer_u8)

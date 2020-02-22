@@ -4,6 +4,8 @@
 global.Menu = self
 global.online = true
 
+scr_set_controls_default(0, CONTROLS_KEYBOARD)
+
 //state - current "menu" of the game
 state = STATE_ONLINE
 //holds states in order visited for universal back button

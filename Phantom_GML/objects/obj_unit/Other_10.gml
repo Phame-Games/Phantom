@@ -1,5 +1,4 @@
 /// @description Movement
-
 switch to{
 	case 0:
 		path_start (pth_straight, move_speed, path_action_stop, 0)

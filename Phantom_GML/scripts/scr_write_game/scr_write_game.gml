@@ -30,11 +30,11 @@ var count = ds_list_size(global.Menu.Game_Players); // get the amount of clients
 //	show_debug_message("scr_write_game player amount: " + string(count))
 buffer_write(buff, buffer_u8, count)
 // check for clients to send confirmations
-for (i = 0; i < count; i++) { 
+for (var i = 0; i < count; i++) { 
 	//obj_player
 	var player = ds_list_find_value(global.Menu.Game_Players, i) //obj_player
-	buffer_write(buff, buffer_s8, player.Unit.to)
-	show_debug_message("scr_write_game to: " + string(player.Unit.to))
+	buffer_write(buff, buffer_s8, player.to)
+//	show_debug_message("scr_write_game to: " + string(player.Unit.to))
 }
     
 // delocalize the write buffer

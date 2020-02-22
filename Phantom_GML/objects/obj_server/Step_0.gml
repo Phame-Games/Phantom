@@ -12,7 +12,7 @@
                 scr_write_lobby();
                 
                 // check for clients to send confirmations
-                for (i = 0; i < count; i++) { 
+                for (var i = 0; i < count; i++) { 
                     //get the ip of the client to get the message
                     var ip = ds_list_find_value(iplist, i);
                     
@@ -54,7 +54,7 @@
                 scr_write_game();
                 
                 //check for clients to send information
-                for (i = 0; i < count; i++) { 
+                for (var i = 0; i < count; i++) { 
                     //get the ip of the client to get the message
                     var ip = ds_list_find_value(iplist, i);
                     

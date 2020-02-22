@@ -126,8 +126,9 @@ if(client == eventid) {
 								//update each player
 								for (i = 0; i < count; i++) { 
 									var player = ds_list_find_value(global.Menu.Game_Players, i)
-									player.Unit.to = buffer_read(buffer, buffer_s8)
-									show_debug_message("obj_client.Async to: " + string(player.Unit.to))
+									var to = buffer_read(buffer, buffer_s8)
+									player.Unit.to = to
+//									show_debug_message("obj_client.Async to: " + string(player.Unit.to))
 								}
                                 
 		                        //temporarily hold server data, local because it will be called a lot of times

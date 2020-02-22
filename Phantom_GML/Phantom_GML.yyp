@@ -343,6 +343,14 @@
             }
         },
         {
+            "Key": "4b2c1900-92fc-419d-b3b4-f214d172c8a9",
+            "Value": {
+                "id": "e195b5e0-3e65-4a7a-aecb-a414a8c36ec0",
+                "resourcePath": "scripts\\scr_game_input\\scr_game_input.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4bd9a588-61c6-44b5-84e1-b83b78b9fe04",
             "Value": {
                 "id": "d98cae0d-ce9c-449d-be69-3f9ff008c992",
@@ -527,6 +535,14 @@
             }
         },
         {
+            "Key": "8f6428f1-77df-41df-9e2e-34b453bbe698",
+            "Value": {
+                "id": "3aef3ccf-1a6f-4652-bf6d-25972bf9649d",
+                "resourcePath": "scripts\\scr_array_sum\\scr_array_sum.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8f9e8d8e-9bd6-4015-bc0b-5bf78b386ced",
             "Value": {
                 "id": "7e3c0027-98ae-4217-97e2-277c5bdfb104",
@@ -580,6 +596,14 @@
                 "id": "05b2d67c-fbd0-4ae8-a258-e48f351eaf73",
                 "resourcePath": "views\\9e25c48c-8028-46f3-a300-ac49f1f171d4.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "a2c7ba4f-15dd-4988-891c-601f8445ae52",
+            "Value": {
+                "id": "6b8c9ef5-1242-4efc-87aa-615a4473b09d",
+                "resourcePath": "scripts\\scr_get_gamepad_input\\scr_get_gamepad_input.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -676,6 +700,14 @@
                 "id": "9b2a8718-f3b8-4d66-b33f-ee56dea508b2",
                 "resourcePath": "objects\\obj_control\\obj_control.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "bf1195c5-5f90-4ccc-8bd4-13a69cb82c4b",
+            "Value": {
+                "id": "23d406e8-08a7-4997-ba17-03a5a4580866",
+                "resourcePath": "scripts\\scr_set_controls_default\\scr_set_controls_default.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -828,6 +860,7 @@
         "ace6a264-0718-4686-a064-91731fa79822",
         "48328041-742e-4b11-8b92-a492de9c8287",
         "d18ed447-3d65-4c08-941a-21afbc068667",
+        "8f6428f1-77df-41df-9e2e-34b453bbe698",
         "8131f1ac-c37a-4cc3-9c63-646f996817ad",
         "25fa5519-fc07-49a0-ad4c-fd5f27f3dcb9",
         "6a4d93db-cd7e-4c0f-ac55-9c6968860b02",
@@ -849,6 +882,9 @@
         "7c488e02-296d-4e9c-a582-13824cb85412",
         "13ce9d38-3c27-4b9d-85f5-2a82f3bfa624",
         "28c91fce-65ff-43d1-880e-764c6f4a7301",
+        "4b2c1900-92fc-419d-b3b4-f214d172c8a9",
+        "bf1195c5-5f90-4ccc-8bd4-13a69cb82c4b",
+        "a2c7ba4f-15dd-4988-891c-601f8445ae52",
         "a2ff5f20-3edf-40c7-89c0-013e37926494",
         "3242ec3f-4b65-4cb6-9f7f-96c94455a952",
         "ef013ca6-19cc-4f27-83f3-99dcb62ee4a8"

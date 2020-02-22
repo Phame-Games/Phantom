@@ -9,7 +9,7 @@ Player = noone
 alarm[0] = 1
 
 //operation variables
-move_speed = .5
+move_speed = obj_control.move_speed
 
 //direction to move
 to = -1 //-1 stop, 0 right, 1 up, 2 left, 3 down

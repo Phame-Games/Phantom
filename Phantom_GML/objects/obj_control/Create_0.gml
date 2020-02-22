@@ -7,4 +7,6 @@ scr_generate_map()
 //window_set_fullscreen(true)
 
 //timed moving
-alarm[0] = 60
+move_speed = 0.5
+move_buffer = 32/move_speed //distance divided by move speed
+alarm[0] = move_buffer
