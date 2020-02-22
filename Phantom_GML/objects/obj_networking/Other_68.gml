@@ -5,11 +5,11 @@ var eventid = ds_map_find_value(async_load, "id");
 show_debug_message("Check for broadcast message")
 
 if eventid == broadcast_server{
-	if buffer_read(buff, buffer_u8) == GAME_ID{
-	    var ip = ds_map_find_value(async_load, "ip");
+	var ip = ds_map_find_value(async_load, "ip");
 
-	    //Incoming data for the server from a connected saocket
-	    var buff = ds_map_find_value(async_load, "buffer");
+	//Incoming data for the server from a connected saocket
+	var buff = ds_map_find_value(async_load, "buffer");
+	if buffer_read(buff, buffer_u8) == GAME_ID{
 	    var name = buffer_read(buff, buffer_string );
         
 	    //Add to our list...if we don't already have it!
