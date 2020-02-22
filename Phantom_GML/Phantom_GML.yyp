@@ -143,6 +143,14 @@
             }
         },
         {
+            "Key": "14568d02-e7f6-42ae-aa6a-50b31f8ebeb0",
+            "Value": {
+                "id": "47634b89-fce8-4c49-a8ee-3e95a1a129be",
+                "resourcePath": "scripts\\scr_write_game_sync\\scr_write_game_sync.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1cc9ee39-3051-4441-93a2-557a39f6f765",
             "Value": {
                 "id": "ea14a313-ccc5-420e-a222-4265646f312e",
@@ -875,6 +883,7 @@
         "90dec00e-0334-4fcf-94f3-03c993249bca",
         "25fc3dad-5340-4306-a7fa-1f247a8b70f0",
         "fb648b52-66b9-452b-8a3b-eed6224274a1",
+        "14568d02-e7f6-42ae-aa6a-50b31f8ebeb0",
         "7a10c437-e4b9-4237-b13e-42d8c42b910a",
         "0610a1d8-32ff-44d6-a20b-ae86a8ee954a",
         "73467cd1-15ef-4457-9caa-654a7943dafe",

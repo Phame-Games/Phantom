@@ -22,11 +22,7 @@ buffer_write(buff, buffer_u8, 0);//connect_id); Written in send buffer
 buffer_write(buff, buffer_u8, STATE_GAME);
 
 //write command
-buffer_write(buff, buffer_u8, UPDATE_CMD)
-
-//hold space for specific camera x and y
-buffer_write(buff, buffer_s16, 0);
-buffer_write(buff, buffer_s16, 0);
+buffer_write(buff, buffer_u8, SYNC_CMD)
 	
 //Write all players
 var count = ds_list_size(global.Menu.Game_Players); // get the amount of clients connected
@@ -36,7 +32,8 @@ buffer_write(buff, buffer_u8, count)
 for (var i = 0; i < count; i++) { 
 	//obj_player
 	var player = ds_list_find_value(global.Menu.Game_Players, i) //obj_player
-	buffer_write(buff, buffer_s8, player.to)
+	buffer_write(buff, buffer_u16, player.Unit.x)
+	buffer_write(buff, buffer_u16, player.Unit.y)
 //	show_debug_message("scr_write_game to: " + string(player.Unit.to))
 }
     

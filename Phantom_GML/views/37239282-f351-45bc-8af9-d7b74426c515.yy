@@ -10,7 +10,8 @@
         "062e0114-4f97-4497-a8ef-a55abbe15e49",
         "90dec00e-0334-4fcf-94f3-03c993249bca",
         "25fc3dad-5340-4306-a7fa-1f247a8b70f0",
-        "fb648b52-66b9-452b-8a3b-eed6224274a1"
+        "fb648b52-66b9-452b-8a3b-eed6224274a1",
+        "14568d02-e7f6-42ae-aa6a-50b31f8ebeb0"
     ],
     "filterType": "GMScript",
     "folderName": "server",

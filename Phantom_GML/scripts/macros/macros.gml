@@ -21,6 +21,7 @@
 #macro PING_CMD 1
 #macro TILE_CMD 2
 #macro UPDATE_CMD 3
+#macro SYNC_CMD 4
 
 #macro KEY_PRESSED 2
 #macro KEY_ISPRESSED 1

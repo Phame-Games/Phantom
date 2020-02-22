@@ -51,7 +51,12 @@
             case STATE_GAME:
 				#region Game
                 //write the game information to the sending buffer
-                scr_write_game();
+				if obj_control.alarm[0] == 0{
+					scr_write_game_sync()
+				}
+				else{
+					scr_write_game();
+				}
                 
                 //check for clients to send information
                 for (var i = 0; i < count; i++) { 

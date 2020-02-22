@@ -117,20 +117,37 @@ if(client == eventid) {
 		                    #region Game updates
 							//check if already in game menu
 		                    if (global.Menu.state == STATE_GAME and room == rm_main) {
-		                        //hold space for specific camera x and y
-		                        var cameraX = buffer_read(buffer, buffer_s16);
-		                        var cameraY = buffer_read(buffer, buffer_s16);
+								//read command
+								var command = buffer_read(buffer, buffer_u8)
 								
-								//read all players
-								var count = buffer_read(buffer, buffer_u8)
-								//update each player
-								for (i = 0; i < count; i++) { 
-									var player = ds_list_find_value(global.Menu.Game_Players, i)
-									var to = buffer_read(buffer, buffer_s8)
-									//ensure that to is not a -1 message sent after server already updated
-									if to != -1
-										player.Unit.to = to
-//									show_debug_message("obj_client.Async to: " + string(player.Unit.to))
+								if command == UPDATE_CMD{
+									#region Update
+				                    //hold space for specific camera x and y
+				                    var cameraX = buffer_read(buffer, buffer_s16);
+				                    var cameraY = buffer_read(buffer, buffer_s16);
+								
+									//read all players
+									var count = buffer_read(buffer, buffer_u8)
+									//update each player
+									for (i = 0; i < count; i++) { 
+										var player = ds_list_find_value(global.Menu.Game_Players, i)
+										var to = buffer_read(buffer, buffer_s8)
+										//ensure that to is not a -1 message sent after server already updated
+										if to != -1
+											player.Unit.to = to
+	//									show_debug_message("obj_client.Async to: " + string(player.Unit.to))
+									}
+									#endregion
+								}
+								else if command == SYNC_CMD{
+									//read all players
+									var count = buffer_read(buffer, buffer_u8)
+									//update each player
+									for (i = 0; i < count; i++) { 
+										var player = ds_list_find_value(global.Menu.Game_Players, i)
+										player.Unit.x = buffer_read(buffer, buffer_u16)
+										player.Unit.y = buffer_read(buffer, buffer_u16)
+									}
 								}
                                 
 		                        //temporarily hold server data, local because it will be called a lot of times
