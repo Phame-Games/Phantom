@@ -11,7 +11,3 @@ move_speed = .5
 
 //direction to move
 to = -1
-
-//target position, grid indexes
-tx = round(x/GRID)
-ty = round(y/GRID)

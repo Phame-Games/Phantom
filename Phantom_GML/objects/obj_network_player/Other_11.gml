@@ -4,7 +4,7 @@
 with (obj_server) {
     // delete refrence in clients list
     ds_map_delete(Clients, other.ip)
-	ds_map_delete(connect_ips, connect_id)
+	ds_map_delete(connect_ips, other.connect_id)
     ds_map_delete(clientMessages, other.ip)
     
     // find index in parallel arrays using client ip
