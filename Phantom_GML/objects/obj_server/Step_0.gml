@@ -51,7 +51,7 @@
             case STATE_GAME:
 				#region Game
                 //write the game information to the sending buffer
-				if obj_control.alarm[0] == 0{
+				if obj_control.alarm[0] == 1{
 					scr_write_game_sync()
 				}
 				else{

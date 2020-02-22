@@ -11,3 +11,8 @@ move_speed = .5
 
 //direction to move
 to = -1
+
+//sync
+sync = false
+sx = x
+sy = y

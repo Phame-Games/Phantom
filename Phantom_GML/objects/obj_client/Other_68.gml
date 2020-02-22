@@ -139,14 +139,15 @@ if(client == eventid) {
 									}
 									#endregion
 								}
-								else if command == SYNC_CMD{
+								else if command == SYNC_CMD and not global.have_server{
 									//read all players
 									var count = buffer_read(buffer, buffer_u8)
 									//update each player
 									for (i = 0; i < count; i++) { 
 										var player = ds_list_find_value(global.Menu.Game_Players, i)
-										player.Unit.x = buffer_read(buffer, buffer_u16)
-										player.Unit.y = buffer_read(buffer, buffer_u16)
+										player.Unit.sx = buffer_read(buffer, buffer_u16)
+										player.Unit.sy = buffer_read(buffer, buffer_u16)
+										player.Unit.sync = true
 									}
 								}
                                 
