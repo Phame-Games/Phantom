@@ -7,6 +7,7 @@ switch action{
 		game_end()
 		break
 	case "direct":
+		global.connectip = global.Networking.Direct_IP.text;
 		global.Networking.alarm[0] = 1;
 		break
 	case "back":
