@@ -127,7 +127,9 @@ if(client == eventid) {
 								for (i = 0; i < count; i++) { 
 									var player = ds_list_find_value(global.Menu.Game_Players, i)
 									var to = buffer_read(buffer, buffer_s8)
-									player.Unit.to = to
+									//ensure that to is not a -1 message sent after server already updated
+									if to != -1
+										player.Unit.to = to
 //									show_debug_message("obj_client.Async to: " + string(player.Unit.to))
 								}
                                 
