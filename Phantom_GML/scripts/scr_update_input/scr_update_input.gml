@@ -26,6 +26,7 @@ switch (oldState) {
     case KEY_ISPRESSED:
         switch (newState) {
             case KEY_PRESSED:
+				return KEY_PRESSED;
             case KEY_ISPRESSED:
                 return KEY_ISPRESSED;
             case KEY_RELEASED:

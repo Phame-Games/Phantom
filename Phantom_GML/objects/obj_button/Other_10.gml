@@ -17,6 +17,6 @@ switch action{
 		break
 	case "ready":
 		with(obj_client){
-			scr_send_input(1)
+			scr_send_input(KEY_PRESSED)
 		}
 }

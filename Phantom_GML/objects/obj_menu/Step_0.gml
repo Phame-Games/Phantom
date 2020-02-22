@@ -152,6 +152,8 @@ switch(state) {
                     ds_list_replace(readys, playerIndex, scr_toggle(ds_list_find_value(readys, playerIndex)));
                     // unpress key
                     inst.inputs[2] = scr_toggle_key(inst.inputs[2]);
+					//toggle twice because of button input
+					//inst.inputs[2] = scr_toggle_key(inst.inputs[2]);
                 }
             }
 			
