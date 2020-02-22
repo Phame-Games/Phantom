@@ -1,10 +1,7 @@
-/// @description scr_network_state_to_string(value)
-/// @param value
-/* 
-* Description:  takes the msgID contsant and returns the corresponding string
-* Parameters:   value - networkState
-* Returns:      string
-*/
+/// @function scr_network_state_to_string(value)
+/// @description Returns string of macro
+/// @param value | value to convert
+// Returns string
 
 // set input
 var value = argument0;

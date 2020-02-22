@@ -1,10 +1,7 @@
-/// @description scr_get_key_input(key)
-/// @param key
-/* 
-* Description: gets the current state of the key
-* Parameters:  key - unicode value for the key
-* Returns:     real, the constant value state of the key
-*/
+/// @function scr_get_key_input(key)
+/// @description Gets the current state of the key
+/// @param key | Unicode value for the key
+// Returns real, the constant represented value state of the key
 
 // set input
 var key = argument0;

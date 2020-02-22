@@ -1,5 +1,6 @@
 /// @function scr_connect_client()
 /// @description connects a client to the server, disconnections handled in obj_network_player
+// Returns null
 
 //get the IP and port that the socket comes from
 var ip = ds_map_find_value(async_load, "ip");

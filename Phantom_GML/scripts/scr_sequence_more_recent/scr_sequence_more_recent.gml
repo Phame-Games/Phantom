@@ -1,9 +1,10 @@
-/*scr_sequence_more_recent()
-* returns most recent sequence account for sequence wrap around
-* argument0 - s1, incoming sequence
-* argument1 - s2, old sequence
-* argument2 - max
-*/
+/// @function scr_sequence_more_recent(s1, s2, max)
+/// @description Returns most recent sequence account for sequence wrap around
+/// @param s1 | incoming sequence
+/// @param s2 | old sequence
+/// @param max | max sequence till wrap around
+// Returns bool
+
 s1 = argument0;
 s2 = argument1;
 smax = argument2;

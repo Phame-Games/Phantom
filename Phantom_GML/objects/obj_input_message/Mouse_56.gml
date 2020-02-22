@@ -3,7 +3,6 @@
 // get box size
 var sb = 8; // side buffer
 var pw;
-var ph = 16*2;
 var aw = 0; // width of actions
 var ro = 2*8; // rows
 var mw = string_width(string_hash_to_newline(prompt)); // width of message

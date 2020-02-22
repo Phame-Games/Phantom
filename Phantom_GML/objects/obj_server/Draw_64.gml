@@ -43,7 +43,6 @@ if (serverDebug) {
 	        var sequenceOut = sequenceOuts[| i];
         
 	        // draw RTT
-        
 	        draw_text(10, 30+yOffset*drawOffset, string_hash_to_newline(string(ip)));
 	        draw_text(340, 30+yOffset*drawOffset, string_hash_to_newline(string(inst.currentRTT)));
 	        draw_text(160, 30+yOffset*drawOffset, string_hash_to_newline(scr_network_state_to_string(message)));

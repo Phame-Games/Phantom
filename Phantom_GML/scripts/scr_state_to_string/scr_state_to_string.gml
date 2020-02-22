@@ -1,5 +1,7 @@
-/// @description scr_state_to_string(value)
+/// @function scr_state_to_string(value)
+/// @description Returns sting of macro name
 /// @param value
+// Returns string, macro name
 
 // set input
 var value = argument0;

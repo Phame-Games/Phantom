@@ -1,11 +1,9 @@
-/*
-/ Description: send the buffer to the specified client
-/ Script Call: scr_send_buffer(ip, index, buffer)
-/ Parameters : ip - given, because ip needs to be found to check client state
-/              index - client index in the parallel arrays
-/              buffer - buffer with information to send
-/ Return     : void
-*/
+/// @function scr_send_buffer()
+/// @description Server function to send a buffer to a client, individualized
+/// @param ip | Ip needs to be found to check the client's state
+/// @param index | client index in the parallel arrays
+/// @param buffer | buffer with information to send
+// Returns null
 
 // set input
 var ip = argument0;

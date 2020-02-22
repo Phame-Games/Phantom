@@ -2,6 +2,7 @@
 /// @description switches the current menu state to the new state
 /// @param from
 /// @param to
+// Returns null
 
 // set input
 var from = argument0;

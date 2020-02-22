@@ -1,10 +1,7 @@
-/// @description scr_get_mouse_input(button)
-/// @param button
-/* 
-* Description: gets the current state of the key
-* Parameters:  key - unicode value for the key
-* Returns:     real, the constant value state of the key
-*/
+/// @function scr_get_mouse_input(button)
+/// @description Gets the current state of the button
+/// @param button | unicode value for the button
+// Returns real, the constant value state of the key
 
 // set input
 var key = argument0;

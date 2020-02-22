@@ -14,12 +14,12 @@ if buffer_read(buff, buffer_u8) == GAME_ID{
 	switch (msgId) {
 	    case CLIENT_CONNECT:
 	        //client connecting
-			show_debug_message("Call scr_connect_client")
+			show_debug_message("obj_server.Async Call scr_connect_client")
 	        scr_connect_client();
 	        break;
 	    case CLIENT_LOGIN:
 	        //client logging in
-			show_debug_message("Call scr_login_client")
+			show_debug_message("obj_server.Async Call scr_login_client")
 	        scr_login_client();
 	        break;
 	    case CLIENT_PLAY:

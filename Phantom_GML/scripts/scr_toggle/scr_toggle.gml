@@ -1,7 +1,8 @@
-/*scr_toggle
-* toggle a boolean
-* argument0 - boolean value
-*/
+/// @function scr_toggle()
+/// @description Toggles a boolean value
+/// @param value | value to be toggled
+// Returns bool
+
 var value = argument0;
 //start
     {

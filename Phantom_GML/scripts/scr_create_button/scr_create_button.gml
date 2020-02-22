@@ -3,6 +3,7 @@
 /// @param xx
 /// @param yy
 /// @param type | button action
+// Returns new button ID
 
 var xx = argument0
 var yy = argument1

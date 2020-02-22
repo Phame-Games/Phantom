@@ -1,9 +1,7 @@
-/// @description scr_send_tile_click()
-/*
-* Description:  send input data
-* Parameters:   none
-* Return:       void
-*/
+/// @function scr_send_update()
+/// @description Sends a generic Game state update
+// Returns null
+
 
 
 // start

@@ -6,8 +6,7 @@ if global.Menu.state == STATE_LOBBY{
 	network_send_broadcast(server, 6511, broadcast_buffer, buffer_tell(broadcast_buffer));
 
 	//broadcast once a second...
-
-		alarm[0] = BROADCAST_RATE
+	alarm[0] = BROADCAST_RATE
 
 	show_debug_message("broadcast")
 }

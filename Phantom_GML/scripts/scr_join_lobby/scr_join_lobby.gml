@@ -1,6 +1,7 @@
 /// @function scr_join_lobby(client)
 /// @description joins a client or removes them
 /// @param Client | id of the client's obj_network_player on the server
+// Returns null
 
 with (global.Menu) {
     //set input

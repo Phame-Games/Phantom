@@ -1,18 +1,11 @@
-/// @description int = scr_increment_in_bounds(variable, amount, lowerBound, upperBound, wrapAround)
+/// @function scr_increment_in_bounds(variable, amount, lowerBound, upperBound, wrapAround)
+/// @description Returns the value incremented within the given bounds
 /// @param variable
-/// @param  amount
-/// @param  lowerBound
-/// @param  upperBound
-/// @param  wrapAround
-/* 
-* Description: increments a value within a certain bound
-* Parameters:  variable - variable to increment
-*              amount - amount to increment or decrement by
-*              lowerBound - lower bound limit
-*              upperBound - upper bound limit
-*              wrapAround - whether to wrap around
-* Returns:     int, the new value
-*/
+/// @param amount
+/// @param lowerBound
+/// @param upperBound
+/// @param wrapAround
+// Returns the value incremented within the given bounds
 
 // set input
 var variable = argument0;

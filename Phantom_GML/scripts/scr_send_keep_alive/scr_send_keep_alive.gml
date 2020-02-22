@@ -1,6 +1,7 @@
-/*scr_send_keep_alive()
-* Ping the server now and then so we know if we're still connected or not....
-*/
+/// @function scr_send_keep_alive()
+/// @description Ping the server now and then so we know if we're still connected or not....
+// Returns null
+
     {
     // Move to start of buffer. Networking ALWAYS takes the data from the START of a buffer.
     buffer_seek(buff, buffer_seek_start, 0);

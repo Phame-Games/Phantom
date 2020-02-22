@@ -1,5 +1,6 @@
 /// @function scr_login_client()
 /// @description Updates player information, name
+// Returns null
 
 // get the buffer the data resides in
 var buff = ds_map_find_value(async_load, "buffer");

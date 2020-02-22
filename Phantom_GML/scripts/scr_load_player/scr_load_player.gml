@@ -1,9 +1,6 @@
-/// @description scr_load_player()
-/* 
-* Description:  Loads the controls
-* Parameters:   none
-* Returns:      void
-*/
+/// @function scr_load_player()
+/// @description Loads the player data
+// Returns null
 
 // open file
 if (file_exists("player.ini")) {

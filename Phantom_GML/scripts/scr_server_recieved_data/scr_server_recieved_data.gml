@@ -1,9 +1,6 @@
-/// @description scr_server_received_data()
-/*
-* Description:  read incoming client data
-* Parameters:   none
-* Return:       void
-*/
+/// @function scr_server_recieved_data()
+/// @description Read client message data
+// Returns null
 
 //start
     {  

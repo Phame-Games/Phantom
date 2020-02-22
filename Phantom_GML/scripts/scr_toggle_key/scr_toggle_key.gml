@@ -1,9 +1,8 @@
-/// @description scr_toggle_key(state)
-/// @param state
-/*
-* toggle key from PRESSED to ISPRESSED
-* argument0 - key
-*/
+/// @function scr_toggle_key(value)
+/// @description Toggles key state, PRESSED to ISPRESSED, RELEASED to ISRELEASED, etc.
+/// @param value | Toggles the key to the next
+// Returns the new state
+
 var value = argument0;
 //start
     {
