@@ -31,9 +31,11 @@ var count = ds_list_size(global.Menu.game_players); // get the amount of clients
 buffer_write(buff, buffer_u8, count)
 // check for clients to send confirmations
 for (i = 0; i < count; i++) { 
+	//obj_player
 	var player = ds_list_find_value(global.Menu.game_players, i)
+	buffer_write(buff, buffer_s8, player.Unit.to)
 }
     
 // delocalize the write buffer
-buffer = buff;
+//buffer = buff;
     

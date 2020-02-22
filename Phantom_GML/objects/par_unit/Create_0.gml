@@ -12,4 +12,6 @@ move_speed = .5
 //direction to move
 to = 0
 
-event_inherited()
+//target position, grid indexes
+tx = round(x/GRID)
+ty = round(y/GRID)

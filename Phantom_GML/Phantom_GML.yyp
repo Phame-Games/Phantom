@@ -103,6 +103,14 @@
             }
         },
         {
+            "Key": "0e0801e6-91c6-4f7a-8521-06a594a58502",
+            "Value": {
+                "id": "3afa5da2-70b5-48f7-8bad-61f3f4c61730",
+                "resourcePath": "objects\\par_unit\\par_unit.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "0f9fe104-c181-49ce-89af-f5cdb309360e",
             "Value": {
                 "id": "58b3e08f-d6f9-43ba-8d02-d8c546927da7",
@@ -818,11 +826,10 @@
     "script_order": [
         "06beb4fb-6729-45d9-a33b-6902cc6c4f4c",
         "ace6a264-0718-4686-a064-91731fa79822",
-        "8131f1ac-c37a-4cc3-9c63-646f996817ad",
-        "25fa5519-fc07-49a0-ad4c-fd5f27f3dcb9",
         "48328041-742e-4b11-8b92-a492de9c8287",
         "d18ed447-3d65-4c08-941a-21afbc068667",
-        "7a10c437-e4b9-4237-b13e-42d8c42b910a",
+        "8131f1ac-c37a-4cc3-9c63-646f996817ad",
+        "25fa5519-fc07-49a0-ad4c-fd5f27f3dcb9",
         "6a4d93db-cd7e-4c0f-ac55-9c6968860b02",
         "0f9fe104-c181-49ce-89af-f5cdb309360e",
         "8f9e8d8e-9bd6-4015-bc0b-5bf78b386ced",
@@ -836,6 +843,7 @@
         "29fe6582-bfcb-4fd5-9fe9-b920382b2e54",
         "25fc3dad-5340-4306-a7fa-1f247a8b70f0",
         "fb648b52-66b9-452b-8a3b-eed6224274a1",
+        "7a10c437-e4b9-4237-b13e-42d8c42b910a",
         "0610a1d8-32ff-44d6-a20b-ae86a8ee954a",
         "73467cd1-15ef-4457-9caa-654a7943dafe",
         "44a56d41-3189-45ed-a006-6df8f0830036",

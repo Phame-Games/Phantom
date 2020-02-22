@@ -10,7 +10,7 @@ if (clientDebug) {
     var count = 10;
     
     // draw background
-    draw_rectangle(0, 0, 500, count*yOffset+30+10, false);
+    draw_rectangle(0, 0, 500, count*yOffset+50+10, false);
     
     // setup drawing
     draw_set_halign(fa_left);
@@ -26,6 +26,7 @@ if (clientDebug) {
     draw_text(10, 30+yOffset*drawOffset++, string_hash_to_newline("msgID In: " + scr_msg_id_to_string(msgIDin)));
     drawOffset++;// skip a space
     draw_text(10, 30+yOffset*drawOffset++, string_hash_to_newline("Client State Info:"));
+	draw_text(10, 30+yOffset*drawOffset++, string_hash_to_newline("Connect ID: " + string(connect_id)));
     draw_text(10, 30+yOffset*drawOffset++, string_hash_to_newline("Client Socket: " + string(client)));
     draw_text(10, 30+yOffset*drawOffset++, string_hash_to_newline("Network State: " + scr_network_state_to_string(global.NetworkState)));
 	draw_text(10, 30+yOffset*drawOffset++, "Sending IP: " + string(ip) + " Sending Port: " + string(port))

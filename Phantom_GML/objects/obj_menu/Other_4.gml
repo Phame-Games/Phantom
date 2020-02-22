@@ -27,7 +27,14 @@ switch global.Menu.state{
 		var spacing = round((room_height/32)/(players+1))*32
 		for (var i = 0; i < players; i ++){
 			var player = instance_create_layer(16, spacing*(i+1)-16, "Instances", obj_player)
-			player.connect_id = ds_list_find_value(obj_client.network_players, i)
+			player.connect_id = ds_list_find_value(obj_client.network_players, i)	//obj_network_player.connectID on server side
+			//set local client's player
+			if player.connect_id == global.Client.connect_id{
+				global.Client.Player = player
+			}
+//			if global.have_server{
+//				ds_map_find_value(global.Server.Clients, )
+				
 			ds_list_add(game_players, player)
 		}
 		#endregion

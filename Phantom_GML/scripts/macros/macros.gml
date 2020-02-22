@@ -2,6 +2,8 @@
 
 #macro GAME_ID 1
 
+#macro GRID 32
+
 #macro NETWORK_CONNECT 0
 #macro NETWORK_LOGIN 2
 #macro NETWORK_PLAY 1

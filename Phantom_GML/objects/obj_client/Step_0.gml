@@ -62,6 +62,15 @@ switch (global.NetworkState) {
 				//scr_send_input(scr_get_key_input(vk_enter));
 				break
 			case STATE_GAME:
+				#region Input
+				var Unit = Player.Unit
+				if keyboard_check_pressed(vk_right){
+					//check if position free
+					//if place_free((Unit.tx + 1)*GRID, Unit.ty*GRID){
+						Player.to = 0
+					//}
+				}
+				#endregion
 				scr_send_update()
 				break
 		}

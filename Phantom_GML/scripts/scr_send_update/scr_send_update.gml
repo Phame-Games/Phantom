@@ -15,16 +15,21 @@ with obj_client {
     //write msgId
     buffer_write(buff, buffer_s8, CLIENT_PLAY);
     
-    // write command
+    //write command
     buffer_write(buff, buffer_u8, UPDATE_CMD);
+	
+	//write requested movement
+	buffer_write(buff, buffer_s8, Player.to)
     
     //Write all players
+	/*
 	var count = ds_list_size(global.Menu.game_players); // get the amount of clients connected
 	buffer_write(buff, buffer_u8, count)
 	// check for clients to send confirmations
 	for (i = 0; i < count; i++) { 
 		var player = ds_list_find_value(global.Menu.game_players, i)
 	}
+	*/
 
     // Send this to the server
     network_send_udp(client,ip,port,buff,buffer_tell(buff));

@@ -1,13 +1,21 @@
 /// @description Initialize client
 
+//Global trackers
 global.Client = self
 
-//The random generator
+#region Game
+//random generator seed
 seeed = current_time
 
+//keep track of local player object
+Player = noone
+#endregion
+
+//Unique identifiers
 //set by obj_networking
 player_name = ""
 
+#region Networking
 //disconnectBuffer - buffer before asking to disconnect
 disconnectBuffer = 60;
 
@@ -29,9 +37,13 @@ connectBuffer = 30; //give client one secound to connect
 sequenceIn = -1; // stores latest packet sequence that the client has recieved
 
 //network indentifiers
+//parallel to obj_server.iplist if have_server
 network_players = ds_list_create()
 network_names = ds_list_create()
+
+//used to identify which client this is to the server
 connect_id = -1
+#endregion
 
 #region Debug
 //clientDebug - whether to show debug for the client

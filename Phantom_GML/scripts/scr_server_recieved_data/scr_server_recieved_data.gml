@@ -36,6 +36,8 @@
                 break;
 			case UPDATE_CMD:
 				#region Client update
+				player.Unit.to = buffer_read(buff, buffer_s8)
+				/*
 				//read amount of players
 				var count = buffer_read(buff, buffer_u8)
 				
@@ -43,6 +45,7 @@
 				for (i = 0; i < count; i++) { 
 					var player = ds_list_find_value(global.Menu.game_players, i)
 				}
+				*/
 				#endregion
 				break;
             case PING_CMD:

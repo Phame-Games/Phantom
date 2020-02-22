@@ -18,8 +18,4 @@ switch to{
 		path_orientation = 270
 		break
 }
-//reset to
-to = -1
-Player.to = to
-
 image_angle = path_orientation

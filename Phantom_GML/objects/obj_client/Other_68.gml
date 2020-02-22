@@ -1,4 +1,4 @@
-/// @description networking code
+/// @description Recieving messages
 var eventid = ds_map_find_value(async_load, "id");
 socketIn = eventid; // the socket id coming from the server
 serverIP = ds_map_find_value(async_load, "ip");
@@ -73,7 +73,7 @@ if(client == eventid) {
 							var player_amount = buffer_read(buffer, buffer_u8)
 	//						show_debug_message("obj_client.Async player_amount " + string(player_amount))
 							for (var i = 0; i < player_amount; i ++){
-								var ID = buffer_read(buffer, buffer_u8)
+								var ID = buffer_read(buffer, buffer_u8)	//obj_network_player.connectID
 								var name = buffer_read(buffer, buffer_string)
 							
 								//check if player is already added locally
@@ -123,6 +123,7 @@ if(client == eventid) {
 								//update each player
 								for (i = 0; i < count; i++) { 
 									var player = ds_list_find_value(global.Menu.game_players, i)
+									player.Unit.to = buffer_read(buffer, buffer_s8)
 								}
                                 
 		                        //temporarily hold server data, local because it will be called a lot of times

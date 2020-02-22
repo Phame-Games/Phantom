@@ -1,6 +1,8 @@
 /// @description initialize variables
 
-// name - player name
+//Server side player object tracker
+
+//name - player name
 name = "Player";
 
 /// server
