@@ -13,22 +13,6 @@
     if (input_buffer < 0) {
         //judge input based on current state
         switch(state){
-            case STATE_LOBBY:
-				#region STATE_LOBBY
-				
-                //press button
-                if (action) {
-                    //check if button exists
-                    var button = ds_list_find_value(buttons, selected);
-                    if (ds_list_size(buttons) > 0 and instance_exists(button)) {
-                        with (button) {
-							//peform the button's purpose
-                            event_user(0);
-                        }
-                    }
-				}
-				#endregion
-				break
             case STATE_GAME:
                 break //no menu
             default: //other menus
@@ -47,6 +31,7 @@
 		        }
         
 		        //keyboard input
+				if keyboard_check(vk_anykey) keyboard_input = true; //show selection via keyboard
 		        if (keyboard_check(vk_left) or keyboard_check(ord("A")) or keyboard_check(ord("J"))) haxis = -1;
 		        if (keyboard_check(vk_right) or keyboard_check(ord("D")) or keyboard_check(ord("L"))) haxis = 1;
 		        if (keyboard_check(vk_up) or keyboard_check(ord("W")) or keyboard_check(ord("I"))) vaxis = -1;
@@ -59,51 +44,71 @@
 				}
 				#endregion
 				#region Default
-				
-                //button controls
-                var button = ds_list_find_value(buttons, selected);
-                
-                //selector
-                if (!is_undefined(button)) {
-					//if on value button limit changes of selection to only down and up to allow left and right to change value
-                    if (instance_exists(button) and button.action == "value" or button.action == "valueAction"){
-                        selected = scr_increment_in_bounds(selected, vaxis, 0, ds_list_size(buttons)-1, true);
-					}
+//                if keyboard_input{
+	                //selector
+	                if (ds_list_size(buttons) > 0) {
+//						show_debug_message("obj_menu.Step selected: " + string(selected))
+						//button controls
+						var button = ds_list_find_value(buttons, selected);
+					
+						//if on value button limit changes of selection to only down and up to allow left and right to change value
+	                    if (instance_exists(button)){
+	//						show_debug_message("obj_menu.Step Button exists")
+							//show button as selected
+							if mouse_x != prev_mouse_x{
+								prev_mouse_x = mouse_x
+								keyboard_input = false;
+								button.image_index = 0
+							}
+							else{
+								button.image_index = 1
+							}
+							
+							if haxis != 0 or vaxis != 0{
+								//no longer show button as selected
+								button.image_index = 0
+								if (button.action == "value" or button.action == "valueAction"){
+									selected = scr_increment_in_bounds(selected, vaxis, 0, ds_list_size(buttons)-1, true);
+								}
+								else{
+			                        selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
+								}
+							}
+						
+			                if (button.action == "value") {
+			                    button.value = scr_increment_in_bounds(button.value, haxis, 0, ds_list_size(button.values)-1, true);
+			                }
+					
+			                else if (button.action == "valueAction") {
+			                    button.value = scr_increment_in_bounds(button.value, haxis, 0, ds_list_size(button.values)-1, true);
+			                    // if value changed do action
+			                    if (haxis != 0)
+			                        with (button) event_user(1);
+			                }
+					
+			                // press button
+			                if (action) {
+			                    with (button) {
+									//perform the button's action
+			                        event_user(0);
+			                    }
+			                }
+						}
+						//else allow any direction to change selected button
+	                    else{
+	                        selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
+						}
+					
+	                }
 					//else allow any direction to change selected button
-                    else{
-                        selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
+					else{
+	                    selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
 					}
-                }
-				//DESCR?
-				else{
-                    selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
-				}
-                                
-                //DESCR?
-                if (ds_list_size(buttons) > 0 and instance_exists(button)) {
-                    if (button.action == "value") {
-                        button.value = scr_increment_in_bounds(button.value, haxis, 0, ds_list_size(button.values)-1, true);
-                    }
-					
-                    else if (button.action == "valueAction") {
-                        button.value = scr_increment_in_bounds(button.value, haxis, 0, ds_list_size(button.values)-1, true);
-                        // if value changed do action
-                        if (haxis != 0)
-                            with (button) event_user(1);
-                    }
-					
-                    // press button
-                    if (action) {
-                        with (button) {
-							//perform the button's action
-                            event_user(0);
-                        }
-                    }
-                }
-				
+	//				show_debug_message("obj_menu.Step pso tselected: " + string(selected))
+//				}
+				#endregion
 				break
 				
-				#endregion
         }
     }
 	

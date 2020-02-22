@@ -1,16 +1,36 @@
 /// @description Initiate rooms!
 
-if global.Menu.state = STATE_GAME{
-	var players = ds_list_size(obj_client.network_players)
+//reset keyboard input for button selection
+keyboard_input = false
+
+switch global.Menu.state{
+	case STATE_ONLINE:
+		#region Online
+		//Create buttons
+		ds_list_add(buttons, scr_create_button(96, 832, "host"))
+		ds_list_add(buttons, scr_create_button(300, 832, "direct"))
+		ds_list_add(buttons, scr_create_button(736, 832, "quit"))
+		#endregion
+		break
+	case STATE_LOBBY:
+		#region Lobby
+		ds_list_add(buttons, scr_create_button(736, 832, "back"))
+		#endregion
+		break
+	case STATE_GAME:
+		#region Game
+		var players = ds_list_size(obj_client.network_players)
 	
-	show_debug_message("obj_menu.Room_Start Players made: " + string(players))
+		show_debug_message("obj_menu.Room_Start Players made: " + string(players))
 	
-	var spacing = round((room_height/32)/(players+1))*32
-	for (var i = 0; i < players; i ++){
-		var player = instance_create_layer(16, spacing*(i+1)-16, "Instances", obj_player)
-		player.connect_id = ds_list_find_value(obj_client.network_players, i)
-		ds_list_add(game_players, player)
-	}
+		var spacing = round((room_height/32)/(players+1))*32
+		for (var i = 0; i < players; i ++){
+			var player = instance_create_layer(16, spacing*(i+1)-16, "Instances", obj_player)
+			player.connect_id = ds_list_find_value(obj_client.network_players, i)
+			ds_list_add(game_players, player)
+		}
+		#endregion
+		break
 }
 
 /* Sounds

@@ -5,9 +5,6 @@ with (instance_create_layer(room_width/2, room_height/2, "lay_instances", obj_in
         case STATE_LOBBY:
             ds_list_add(actions, "backOnlineLobby");
             break;
-        case STATE_PATHS:
-            ds_list_add(actions, "backOnlinePaths");
-            break;
         case STATE_GAME:
             ds_list_add(actions, "backOnlineGame");
             break;

@@ -25,12 +25,3 @@ Name_input.text = "Newbius";
 
 //try to load player name
 scr_load_player();
-
-//Create host button
-instance_create_layer(96, 832, "Instances", obj_host_btn)
-
-//Create quit button
-instance_create_layer(736, 832, "Instances", obj_quit_btn)
-
-//Create direct button
-instance_create_layer(300, 832, "Instances", obj_direct_btn)

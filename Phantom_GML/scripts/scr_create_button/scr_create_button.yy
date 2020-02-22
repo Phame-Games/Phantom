@@ -1,8 +1,8 @@
 {
-    "id": "85f0e95b-1a91-4436-bb64-2951de0e23f8",
+    "id": "8131f1ac-c37a-4cc3-9c63-646f996817ad",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_send_tile_click",
+    "name": "scr_create_button",
     "IsCompatibility": false,
     "IsDnD": false
 }

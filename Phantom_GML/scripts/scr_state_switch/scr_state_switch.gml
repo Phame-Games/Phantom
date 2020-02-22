@@ -35,6 +35,11 @@ with (global.Menu) {
             break;
 		case STATE_LOBBY:
             switch (to) {
+				case STATE_ONLINE:
+					room_goto(rm_networking)
+					instance_destroy(obj_client)
+					instance_destroy(obj_server)
+					break
                 case STATE_GAME:
 					random_set_seed(obj_client.seeed)
                     room_goto_next()

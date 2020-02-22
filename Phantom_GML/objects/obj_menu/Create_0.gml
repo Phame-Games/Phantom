@@ -13,7 +13,9 @@ state_queue = ds_stack_create()
 buttons = ds_list_create(); //holds menu buttons
 selected = 0; //selected button
 input_buffer = 0; //small buffer to slow down gamepad input
-input_buffer_max = 4;
+input_buffer_max = 8
+keyboard_input = false	//whether to show selection via keyboard
+prev_mouse_x = mouse_x	//check to see if mouse move to turn off keyboard input
 
 players = ds_list_create();
 readys = ds_list_create();
