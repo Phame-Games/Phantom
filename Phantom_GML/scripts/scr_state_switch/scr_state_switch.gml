@@ -26,6 +26,9 @@ with (global.Menu) {
 	//io_clear to prevent keystrokes from carrying to next menu
 	io_clear()
 	
+	//prevent old lobby from showing up
+	ds_list_clear(server_data)
+	
 	//set state
 	state = to;
 
