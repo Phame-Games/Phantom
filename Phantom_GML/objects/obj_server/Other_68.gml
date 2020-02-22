@@ -10,12 +10,12 @@ var msgId = buffer_read(buff, buffer_s8);
 
 switch (msgId) {
     case CLIENT_CONNECT:
-        // client connecting
-		show_debug_message("Call scr_login_connect")
+        //client connecting
+		show_debug_message("Call scr_connect_client")
         scr_connect_client();
         break;
     case CLIENT_LOGIN:
-        // client logging in
+        //client logging in
 		show_debug_message("Call scr_login_client")
         scr_login_client();
         break;

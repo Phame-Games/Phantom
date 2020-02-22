@@ -1,3 +1,3 @@
-/// @description  close client
-network_destroy(client);
+/// @description Close client
+network_destroy(client)
 

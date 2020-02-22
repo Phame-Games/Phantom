@@ -1,4 +1,4 @@
-/// @description  disconnect if server is not responding
+/// @description Disconnect if server is not responding
 with (instance_create_layer(room_width/2, room_height/2, "lay_instances", obj_input_message)) {
     prompt = "Server not responding, disconnect?";
     switch(global.Menu.state) {

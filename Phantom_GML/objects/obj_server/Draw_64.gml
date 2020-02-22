@@ -1,4 +1,4 @@
-/// @description  draw server debug information
+/// @description Draw server debug information
 if (serverDebug) {
     // setup drawing
     draw_set_color(c_dkgray);
@@ -46,7 +46,7 @@ if (serverDebug) {
         
 	        draw_text(10, 30+yOffset*drawOffset, string_hash_to_newline(string(ip)));
 	        draw_text(340, 30+yOffset*drawOffset, string_hash_to_newline(string(inst.currentRTT)));
-	        draw_text(160, 30+yOffset*drawOffset, string_hash_to_newline(scr_draw_network_state(message)));
+	        draw_text(160, 30+yOffset*drawOffset, string_hash_to_newline(scr_network_state_to_string(message)));
 	        if (inst.alarm[0] < inst.dropBuffer-2) {
 	            draw_text(400, 30+yOffset*drawOffset, string_hash_to_newline(string(inst.alarm[0])));
 	            }

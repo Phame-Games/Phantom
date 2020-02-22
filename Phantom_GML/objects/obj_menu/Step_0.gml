@@ -26,12 +26,11 @@
                             event_user(0);
                         }
                     }
-                }
-            
-                break;
+				}
 				#endregion
+				break
             case STATE_GAME:
-                break; //no menu
+                break //no menu
             default: //other menus
 				#region Get input
 				//gamepad input
@@ -146,25 +145,24 @@ switch(state) {
                 }
             }
 			
-			//REMOVE? Duplicate code to above, perhaps this should be a script, it would clean things up
-            // if there is a player in the lobby
+			//if there is a player in the lobby
             if (ds_list_size(players)){
-                // check for start
-                var start = true; // set to false if a player is not ready
+                //check for start
+                var start = true; //set to false if a player is not ready
                 
-                // check if any player is not ready
+                //check if any player is not ready
                 for(i = 0; i < ds_list_size(players); i++) {   
                     if !(ds_list_find_value(readys, i)) start = false;
                 }
                 
-                // start if all are ready
+                //start if all are ready
                 if (start) {
-                    // start game
+                    //start game
                     show_debug_message("All ready!");
                     
-                    // switch to path menu
+                    //switch to next menu
                     scr_state_switch(STATE_LOBBY, STATE_GAME)
                 }
             }
         }
-}
+	}

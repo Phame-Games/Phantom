@@ -11,8 +11,8 @@
     //save data
     section = "online";
     ini_section_delete(section);
-    ini_write_string(section, "name", iServerName.text);
-    ini_write_string(section, "direct_ip", directIP.text);
+    ini_write_string(section, "name", Name_input.text);
+    ini_write_string(section, "direct_ip", Direct_IP.text);
     
     //close file
     ini_close(); 

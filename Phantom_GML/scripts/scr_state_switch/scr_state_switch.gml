@@ -30,7 +30,6 @@ with (global.Menu) {
             switch (to) {
                 case STATE_LOBBY:
                     room_goto_next()
-                    show_debug_message(string(state))
                     break;
 			}
             break;
@@ -39,9 +38,9 @@ with (global.Menu) {
                 case STATE_GAME:
 					random_set_seed(obj_client.seeed)
                     room_goto_next()
-                    show_debug_message(string(state))
                     break;
 			}
             break;
-        }
     }
+	show_debug_message("scr_state_switch from " + scr_state_to_string(from) + " to " + scr_state_to_string(to))
+}

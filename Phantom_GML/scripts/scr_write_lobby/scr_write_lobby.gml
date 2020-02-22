@@ -27,6 +27,7 @@
 	//Write all players
 	var count = ds_list_size(iplist); // get the amount of clients connected
 	buffer_write(buff, buffer_u8, count)
+//	show_debug_message("scr_write_lobby player amount: " + string(count))
 	// check for clients to send confirmations
 	for (i = 0; i < count; i++) { 
 	    //get the ip of the client to get the message

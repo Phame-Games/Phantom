@@ -1,12 +1,14 @@
-/// @description Insert description here
-// You can write your code in this editor
-state = STATE_ONLINE; //current game state
-state_queue = ds_stack_create()//holds states in order visited for universal back button
+/// @description Initialize menus
+
+//universal game access
 global.Menu = self
 global.online = true
 
-//set fullscreen
-//window_set_fullscreen(true)
+//state - current "menu" of the game
+state = STATE_ONLINE
+//holds states in order visited for universal back button
+state_queue = ds_stack_create()
+
 
 buttons = ds_list_create(); //holds menu buttons
 selected = 0; //selected button
@@ -18,10 +20,10 @@ readys = ds_list_create();
 names = ds_list_create();
 game_players = ds_list_create();
 
-///Server
-// list to hold data for different menus, lobby
+//list to hold data for different menus, lobby
 server_data = ds_list_create();
 
+//universal colour array
 ColourArray[0] = $80ff80;
 ColourArray[1] = c_red;
 ColourArray[2] = c_blue;
