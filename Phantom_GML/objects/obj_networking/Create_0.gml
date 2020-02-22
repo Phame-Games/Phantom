@@ -11,6 +11,7 @@ global.server_type = network_socket_udp
 //local servers
 serverlist = ds_list_create();
 servernames = ds_list_create();
+server_refresh = ds_list_create();
 
 //create a server to listen on our broadcast port....
 broadcast_server = network_create_server(network_socket_udp, 6511, 100);
@@ -25,3 +26,6 @@ Name_input.text = "Newbius";
 
 //try to load player name
 scr_load_player();
+
+//auto refresh
+alarm[2] = 120

@@ -6,7 +6,7 @@ if global.Menu.state == STATE_LOBBY{
 
 	//broadcast once a second...
 
-		alarm[0] = 60
+		alarm[0] = BROADCAST_RATE
 
 	show_debug_message("broadcast")
 }

@@ -31,7 +31,7 @@ if server < 0{
 }
 
 //setup a timer so we can broadcast the server IP out to local clients looking...
-alarm[0]=60;
+alarm[0]=BROADCAST_RATE;
 
 //serverDebug - whether or not to draw server debug information
 serverDebug = false;

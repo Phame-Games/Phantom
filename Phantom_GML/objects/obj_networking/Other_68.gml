@@ -16,6 +16,11 @@ if eventid == broadcast_server{
     if index < 0 {
         ds_list_add(serverlist, ip);
         ds_list_add(servernames, name);
+		ds_list_add(server_refresh, BROADCAST_RATE*2)
         show_debug_message("New server found at: " + ip + " called: " + name);
     }
+	else {
+		//prevent refresh
+		ds_list_replace(server_refresh, index, BROADCAST_RATE*2)
+	}
 } 
