@@ -27,17 +27,6 @@ switch(actions[| actionSel]) {
         with(obj_menu) event_user(6);
         break;
 	
-		
-	//host server
-    case "createServer":
-        global.InitObject.alarm[1] = 2;
-        break;
-		
-	//connect to server directly
-    case "directConnect":
-        global.InitObject.alarm[2] = 2;
-        break;
-	
 	//new path
     case "new":
         with(instance_create_layer(room_width/2, room_height/2, "lay_instances", obj_input_button)) action = "createPath";

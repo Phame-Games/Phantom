@@ -1,7 +1,7 @@
 /// @description Input
 
 // check if game is paused
-//if !(instance_exists(obj_input_button)){
+if !(instance_exists(obj_input_message)){
 {
     var haxis = 0; //left or right
     var vaxis = 0; //up or down
@@ -117,6 +117,7 @@
     }
 	
     else input_buffer--;
+}
 }
 
 
