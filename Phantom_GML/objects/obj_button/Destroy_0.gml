@@ -3,4 +3,3 @@ var index = ds_list_find_index(global.Menu.buttons, self)
 if index != -1{
 	ds_list_delete(global.Menu.buttons, index)
 }
-show_debug_message("hey")

@@ -55,7 +55,8 @@ switch (global.NetworkState) {
 		
 		switch global.Menu.state{
 			case STATE_LOBBY:
-				scr_send_input();
+				//now handled by ready button
+				//scr_send_input(scr_get_key_input(vk_enter));
 				break
 			case STATE_GAME:
 				scr_send_update()

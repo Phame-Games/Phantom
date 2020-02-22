@@ -21,6 +21,11 @@ with (global.Menu) {
 	else
 		ds_stack_push(state_queue, from)//add new entry
 	
+	//reset button selection to 0
+	selected = 0
+	//io_clear to prevent keystrokes from carrying to next menu
+	io_clear()
+	
 	//set state
 	state = to;
 

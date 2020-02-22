@@ -31,4 +31,8 @@ switch type{
 		btn.sprite_index = spr_rest_btn
 		btn.action = "restart"
 		return btn
+	case "ready":
+		btn.sprite_index = spr_ready
+		btn.action = "ready"
+		return btn
 }

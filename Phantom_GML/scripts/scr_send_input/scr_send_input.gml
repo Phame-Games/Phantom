@@ -23,7 +23,7 @@
         buffer_write(buff, buffer_s8, input);
         }
 	
-	var input = scr_get_key_input(vk_enter);
+	var input = argument0;
     buffer_write(buff, buffer_s8, input);
 	
 	// write the mousX and mouseY

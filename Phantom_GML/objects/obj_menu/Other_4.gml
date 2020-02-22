@@ -14,6 +14,7 @@ switch global.Menu.state{
 		break
 	case STATE_LOBBY:
 		#region Lobby
+		ds_list_add(buttons, scr_create_button(96, 832, "ready"))
 		ds_list_add(buttons, scr_create_button(736, 832, "back"))
 		#endregion
 		break

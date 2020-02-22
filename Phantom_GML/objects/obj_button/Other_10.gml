@@ -15,4 +15,8 @@ switch action{
 	case "restart":
 		game_restart()
 		break
+	case "ready":
+		with(obj_client){
+			scr_send_input(1)
+		}
 }
