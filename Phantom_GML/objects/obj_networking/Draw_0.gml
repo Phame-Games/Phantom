@@ -3,8 +3,8 @@
 draw_set_font(fnt_basic);
 draw_set_color(c_white);
 draw_set_halign(fa_left);
-sx = 128
-sy = 560
+var sx = 128
+var sy = 560
 draw_text(sx, sy + 10,string_hash_to_newline("Select server"))
 draw_line(sx, sy + 30, room_width - sx, sy + 30)
 
