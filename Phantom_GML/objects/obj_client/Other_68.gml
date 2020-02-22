@@ -53,8 +53,8 @@ if(client == eventid) {
 				#endregion
 	            }
 	        if (global.NetworkState == NETWORK_PLAY) {
-				//set clients connectID
-				connect_id = buffer_read(buffer, buffer_u8)	//connectID); Written in send buffer
+				//set clients connect_id - order in which client connected to server, not an index to any list!
+				connect_id = buffer_read(buffer, buffer_u8) //written in scr_send_buffer
 	//			show_debug_message("obj_client.Async connect_id: " + string(connect_id))
 			
 	            if (msgId == SERVER_PLAY) {
@@ -68,13 +68,17 @@ if(client == eventid) {
 		            switch(state) {
 		                case STATE_LOBBY: // lobby
 		                    #region Lobby updates
-                        
+							
+							//temporarily hold server data, local because it is going to be called a lot of time
+		                    var server_data = ds_list_create();
+							
 							//get player list
 							var player_amount = buffer_read(buffer, buffer_u8)
 	//						show_debug_message("obj_client.Async player_amount " + string(player_amount))
 							for (var i = 0; i < player_amount; i ++){
-								var ID = buffer_read(buffer, buffer_u8)	//obj_network_player.connectID
+								var ID = buffer_read(buffer, buffer_u8)	//obj_network_player.connect_id
 								var name = buffer_read(buffer, buffer_string)
+//								var ready = buffer_read(buffer, buffer_bool)
 							
 								//check if player is already added locally
 								var index = ds_list_find_index(network_players, ID)
@@ -89,21 +93,20 @@ if(client == eventid) {
 	//								show_debug_message("obj_client.Async Update name " + string(ds_list_find_index(network_players, ID)))
 								}
 							}
-						
-		                    //get the amount of players
-		                    var players = buffer_read(buffer,buffer_u8);
+
 						
 							//get the random generator seed
-							seeed = buffer_read(buffer,buffer_u32)
-						
-		                    //temporarily hold server data, local because it is going to be called a lot of time
-		                    var server_data = ds_list_create();
+							seeed = buffer_read(buffer, buffer_u32)
+
+							//get the amount of players
+		                    var players = buffer_read(buffer, buffer_u8)
 						
 		                    //read the data
 		                    for (var i = 0; i < players; i++){
-		                        ds_list_add(server_data, buffer_read(buffer,buffer_bool));     //ready
-		                        ds_list_add(server_data, buffer_read(buffer,buffer_string));   //name
-		                        }
+		                        ds_list_add(server_data, buffer_read(buffer, buffer_bool))    //ready
+		                        ds_list_add(server_data, buffer_read(buffer, buffer_string))   //name
+							}
+							
 		                    //copy loaded data to menu
 		                    ds_list_copy(global.Menu.server_data, server_data);
 		                    //delete temporary list
@@ -122,8 +125,9 @@ if(client == eventid) {
 								var count = buffer_read(buffer, buffer_u8)
 								//update each player
 								for (i = 0; i < count; i++) { 
-									var player = ds_list_find_value(global.Menu.game_players, i)
+									var player = ds_list_find_value(global.Menu.Game_Players, i)
 									player.Unit.to = buffer_read(buffer, buffer_s8)
+									show_debug_message("obj_client.Async to: " + string(player.Unit.to))
 								}
                                 
 		                        //temporarily hold server data, local because it will be called a lot of times

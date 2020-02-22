@@ -1,8 +1,8 @@
 /// @description Input
 
-// check if game is paused
+#region Local input, menus, buttons
+//check if game is paused
 if !(instance_exists(obj_input_message)){
-{
     var haxis = 0; //left or right
     var vaxis = 0; //up or down
     var action = false; //clicking
@@ -10,7 +10,7 @@ if !(instance_exists(obj_input_message)){
     var axis_buffer = GAMEPAD_AXIS_TOL; //buffer till push starts counting
     
     //get input
-    if (input_buffer < 0) {
+    if (input_buffer < 0){
         //judge input based on current state
         switch(state){
             case STATE_GAME:
@@ -112,67 +112,58 @@ if !(instance_exists(obj_input_message)){
 //				show_debug_message("obj_menu.Step pso tselected: " + string(selected))
 				#endregion
 				break
-				
         }
     }
 	
     else input_buffer--;
 }
-}
+#endregion
 
-
-/// client input
-//REMOVE? Switch case with 1 case
-switch(state) {
-    case STATE_LOBBY:
-        if(global.online and global.have_server) {
-            var Server = obj_server;
+#region Lobby server input
+if state = STATE_LOBBY and global.online and global.have_server {
+	#region Update readys for network players
+    var Server = obj_server;
 			
-            // check for client input
-            var count = ds_list_size(Server.iplist); //total number of players
-            var iplist = Server.iplist //store locally because it is called many times
+    // check for client input
+    var count = ds_list_size(Server.iplist); //total number of players
+    var iplist = Server.iplist //store locally because it is called many times
             
-            //check join key for each player
-            for(i=0 ;i<count; i++) {   
-                //get the ip
-                var ip = ds_list_find_value(iplist,i);
+    //check join key for each player
+    for (var i = 0; i < count; i++) {   
+        //get the ip
+        var ip = ds_list_find_value(iplist,i);
         
-                //get the player instance so that we can check it
-                var inst = ds_map_find_value(Server.Clients, ip);
-                
-                // other input
-                var playerIndex = ds_list_find_index(players, inst.connectID);
-
-                // initiate input
-                var vaxis = 0;
-                var haxis = 0;
-                
-                // get input
-                if (inst.inputs[2] == KEY_PRESSED) {
-                    ds_list_replace(readys, playerIndex, scr_toggle(ds_list_find_value(readys, playerIndex)));
-                    // unpress key
-                    inst.inputs[2] = scr_toggle_key(inst.inputs[2]);
-                }
-            }
-			
-			//if there is a player in the lobby
-            if (ds_list_size(players)){
-                //check for start
-                var start = true; //set to false if a player is not ready
-                
-                //check if any player is not ready
-                for(i = 0; i < ds_list_size(players); i++) {   
-                    if !(ds_list_find_value(readys, i)) start = false;
-                }
-                
-                //start if all are ready
-                if (start) {
-                    //start game
-                    show_debug_message("All ready!");
-                    
-                    //switch to next menu
-                    scr_state_switch(STATE_LOBBY, STATE_GAME)
-                }
-            }
+        //get the player instance so that we can check it
+        var inst = ds_map_find_value(Server.Clients, ip);
+        
+		var index = ds_list_find_value(players, inst.connect_id)
+        // get input
+        if (inst.inputs[2] == KEY_PRESSED) {
+            ds_list_replace(readys, index, scr_toggle(readys[| index]))
+            // unpress key
+            inst.inputs[2] = scr_toggle_key(inst.inputs[2]);
         }
-	}
+    }
+	#endregion
+			
+	//if there is a player in the lobby
+    if (ds_list_size(players)) {
+        //check for start
+        var start = true; //set to false if a player is not ready
+                
+        //check if any player is not ready
+        for(i = 0; i < ds_list_size(players); i++) {   
+            if !(ds_list_find_value(readys, i)) start = false;
+        }
+                
+        //start if all are ready
+        if (start) {
+            //start game
+            show_debug_message("All ready!");
+                    
+            //switch to next menu
+            scr_state_switch(STATE_LOBBY, STATE_GAME)
+        }
+    }
+}
+#endregion

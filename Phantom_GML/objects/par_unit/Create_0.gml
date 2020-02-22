@@ -10,7 +10,7 @@ alarm[0] = 1
 move_speed = .5
 
 //direction to move
-to = 0
+to = -1
 
 //target position, grid indexes
 tx = round(x/GRID)

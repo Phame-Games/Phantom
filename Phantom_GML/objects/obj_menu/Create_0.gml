@@ -17,10 +17,12 @@ input_buffer_max = 8
 keyboard_input = false	//whether to show selection via keyboard
 prev_mouse_x = mouse_x	//check to see if mouse move to turn off keyboard input
 
-players = ds_list_create();
-readys = ds_list_create();
-names = ds_list_create();
-game_players = ds_list_create();
+//parallel arrays, use ds_list_find_index(players, connect_id) to get index
+players = ds_list_create()	//index is connect id for both local and network players
+readys = ds_list_create()
+names = ds_list_create()
+
+Game_Players = ds_list_create(); //obj_player, created in room start
 
 //list to hold data for different menus, lobby
 server_data = ds_list_create();

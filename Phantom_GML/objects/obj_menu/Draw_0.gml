@@ -37,6 +37,7 @@ switch(state){
 	        var prompt = "Enter"
 			draw_text(room_width/2, room_height-80, string_hash_to_newline("Press " + prompt + " to ready up!"));
 			}
+		/*
 	    else {
 	        var di = 0; //draw index
 			
@@ -57,7 +58,6 @@ switch(state){
 	            // increment draw index
 	            di++
 	        }
-			/*
 	        draw_set_color(c_gray)
 	        // iterate throuch each non joined local player
 	        for (var i = 0; i < controlsMax; i++) {
@@ -72,8 +72,8 @@ switch(state){
 	                di++
 	            }
 	        }
-			*/
 	    }
+		*/
 		#endregion
 		break
 	}

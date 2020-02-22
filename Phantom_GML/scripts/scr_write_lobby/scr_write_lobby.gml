@@ -17,7 +17,7 @@ buffer_write(buff, buffer_s8, SERVER_PLAY);
     
 //write packet sequence
 buffer_write(buff, buffer_u8, 0);//sequenceOut); Written in send buffer
-buffer_write(buff, buffer_u8, 0);//connectID); Written in send buffer
+buffer_write(buff, buffer_u8, 0);//connect_id); Written in send buffer
     
 //state
 buffer_write(buff, buffer_u8, STATE_LOBBY);
@@ -34,19 +34,18 @@ for (i = 0; i < count; i++) {
 	// get the network player
 	var inst = ds_map_find_value(Clients, ip);
     
-	buffer_write(buff, buffer_u8, inst.connectID)
+	buffer_write(buff, buffer_u8, inst.connect_id)
 	buffer_write(buff, buffer_string, inst.name)
 	}
     
-//total number of players
-buffer_write(buff, buffer_u8, ds_list_size(global.Menu.players)); //buffer_u8 MAX: 255
 buffer_write(buff, buffer_u32, obj_client.seeed);
-    
+
+//total number of players, local and online
+buffer_write(buff, buffer_u8, ds_list_size(global.Menu.players)); //buffer_u8 MAX: 255
+
 //send player information in order
-with(global.Menu) {
-	//show_debug_message(string(ds_list_size(players)))
-    for (var i = 0; i < ds_list_size(players); i ++) {
-        buffer_write(buff, buffer_bool, ds_list_find_value(readys, i)); // ready
-        buffer_write(buff, buffer_string, ds_list_find_value(names, i)); // name
-        }
+//show_debug_message(string(ds_list_size(players)))
+for (var i = 0; i < ds_list_size(global.Menu.players); i ++) {
+    buffer_write(buff, buffer_bool, ds_list_find_value(global.Menu.readys, i)); // ready
+    buffer_write(buff, buffer_string, ds_list_find_value(global.Menu.names, i)); // name
     }

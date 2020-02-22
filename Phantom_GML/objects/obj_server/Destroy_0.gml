@@ -38,6 +38,7 @@ ds_list_destroy(sequenceOuts);
 ds_list_destroy(sequenceOutQueues);
 // destroy maps
 ds_map_destroy(Clients);
+ds_map_destroy(connect_ips)
 ds_map_destroy(clientMessages);
 ds_list_destroy(sequenceOutQueues);
 

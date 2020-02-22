@@ -15,9 +15,10 @@ var inst = ds_map_find_value(Clients, ip);
 inst.name = buffer_read(buff, buffer_string);
     
 // update name in lobby
-var playerIndex = inst.connectID;
-show_debug_message("Call scr_update_name")
-scr_update_name(playerIndex, inst.name);
+var playerIndex = inst.connect_id;
+show_debug_message("Update name: " + inst.name)
+var index = ds_list_find_index(global.Menu.players, playerIndex)
+ds_list_replace(global.Menu.names, index, inst.name);
     
 // client message, confirm login
 ds_map_replace(clientMessages, ip, SERVER_LOGIN);  

@@ -42,7 +42,7 @@ network_players = ds_list_create()
 network_names = ds_list_create()
 
 //used to identify which client this is to the server
-connect_id = -1
+connect_id = -1	//order in which client connected to server, not an index to any list!
 #endregion
 
 #region Debug

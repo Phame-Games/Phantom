@@ -5,12 +5,14 @@
 //name - player name
 name = "Player";
 
+Player = noone //local obj_player object
+
 /// server
 if (global.have_server) {
-    //connectID - order in which client connected, used in lobby code
-    connectID = global.player_total;
-    
-    global.player_total++;
+    //connect_id - order in which client connected, used in lobby code
+    connect_id = global.connect_id;
+	
+    global.connect_id++;
     }
 
 

@@ -1,5 +1,7 @@
 /// @description Initialize unit
 
+event_inherited()
+
 //initialize variable to hold Player instance ID
 Player = noone
 
@@ -10,6 +12,5 @@ alarm[0] = 1
 move_speed = .5
 
 //direction to move
-to = 0
+to = -1 //-1 stop, 0 right, 1 up, 2 left, 3 down
 
-event_inherited()

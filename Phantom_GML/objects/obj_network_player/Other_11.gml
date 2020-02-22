@@ -3,8 +3,9 @@
 //also delete the socket from our global list of connected clients
 with (obj_server) {
     // delete refrence in clients list
-    ds_map_delete(Clients, other.ip);
-    ds_map_delete(clientMessages, other.ip);
+    ds_map_delete(Clients, other.ip)
+	ds_map_delete(connect_ips, connect_id)
+    ds_map_delete(clientMessages, other.ip)
     
     // find index in parallel arrays using client ip
     var index = ds_list_find_index(iplist, other.ip);

@@ -23,11 +23,11 @@ with obj_client {
     
     //Write all players
 	/*
-	var count = ds_list_size(global.Menu.game_players); // get the amount of clients connected
+	var count = ds_list_size(global.Menu.Game_Players); // get the amount of clients connected
 	buffer_write(buff, buffer_u8, count)
 	// check for clients to send confirmations
 	for (i = 0; i < count; i++) { 
-		var player = ds_list_find_value(global.Menu.game_players, i)
+		var player = ds_list_find_value(global.Menu.Game_Players, i)
 	}
 	*/
 

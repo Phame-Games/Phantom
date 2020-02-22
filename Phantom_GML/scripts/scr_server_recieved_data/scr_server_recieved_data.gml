@@ -36,14 +36,16 @@
                 break;
 			case UPDATE_CMD:
 				#region Client update
-				player.Unit.to = buffer_read(buff, buffer_s8)
+				//inst.Player.Unit.
+				obj_unit.to = buffer_read(buff, buffer_s8)
+				show_debug_message("scr_server_recieved Update_CMD: " + string(inst.Player.Unit.to))
 				/*
 				//read amount of players
 				var count = buffer_read(buff, buffer_u8)
 				
 				//check each client
 				for (i = 0; i < count; i++) { 
-					var player = ds_list_find_value(global.Menu.game_players, i)
+					var player = ds_list_find_value(global.Menu.Game_Players, i)
 				}
 				*/
 				#endregion
