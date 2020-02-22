@@ -4,7 +4,7 @@ draw_set_font(fnt_basic_small);
 draw_set_color(c_white);
 draw_set_halign(fa_left);
 var sx = 128
-var sy = 560
+var sy = 600
 var fh = 50
 draw_text(sx, sy + 10,string_hash_to_newline("Select server"))
 draw_line(sx, sy + fh/2, room_width - sx, sy + fh/2)

@@ -27,5 +27,7 @@ for (var i = 0; i < ds_list_size(actions); i++;) {
     if point_in_rectangle(mouse_x, mouse_y, dx, dy-bh, dx+bw, dy+bh) {
 		actionSel = i
 		event_user(0)
+		instance_destroy();
 	}
+	dx += bw+sb
 }

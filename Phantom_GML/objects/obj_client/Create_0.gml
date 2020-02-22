@@ -1,5 +1,7 @@
 /// @description Initialize client
 
+global.Client = self
+
 //The random generator
 seeed = current_time
 

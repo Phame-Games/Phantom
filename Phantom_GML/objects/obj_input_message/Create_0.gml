@@ -5,7 +5,7 @@ actionTitles = ds_list_create(); //title for each action
 actionSel = 0; //current action selected
 Source = noone; //who created it
 input_buffer = 0; //small buffer to slow down gamepad input
-input_buffer_max = 4;
+input_buffer_max = 8;
 
 // pause game
 global.paused = true;
