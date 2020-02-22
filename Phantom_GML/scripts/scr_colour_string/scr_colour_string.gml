@@ -1,6 +1,6 @@
 /// @function scr_colour_string(from)
-/// @description Finds the to value
-// Returns to
+/// @description returns the colour index as a string
+// Returns string
 
 var col = argument0
 

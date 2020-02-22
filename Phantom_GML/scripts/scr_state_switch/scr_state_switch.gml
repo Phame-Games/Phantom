@@ -1,13 +1,7 @@
-/// @description  scr_state_switch(from, to)
+/// @function scr_state_switch(from, to)
+/// @description switches the current menu state to the new state
 /// @param from
-/// @param  to
-/*
-/ Description: switches the current menu state to the new state
-/ Script Call: scr_state_switch(from, to)
-/ Parameters : from - id of state to switch from
-/              to - id of state to switch to
-/ Return     : void
-*/
+/// @param to
 
 // set input
 var from = argument0;

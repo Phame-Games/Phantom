@@ -21,7 +21,7 @@ var inst = ds_map_find_value(Clients, ip);
 inst.socketOut = socket;
 
 // update to the clients specific sequence out
-buffer_seek(buffer, buffer_seek_start, 1);
+buffer_seek(buffer, buffer_seek_start, 2);
 var sequenceOut = sequenceOuts[| index];
 buffer_write(buffer, buffer_u8, sequenceOut);
 buffer_write(buffer, buffer_u8, inst.connectID);

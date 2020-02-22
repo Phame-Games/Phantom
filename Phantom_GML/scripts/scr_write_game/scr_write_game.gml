@@ -14,6 +14,9 @@
     //reset buffer to start - Networking ALWAYS reads from the START of the buffer
     buffer_seek(buff, buffer_seek_start, 0);
     
+	//write GAME ID to uniquely define game
+	buffer_write(buff, buffer_u8, GAME_ID)
+	
     //write msgId, SERVER_PLAY because client has already logged on
     buffer_write(buff, buffer_s8, SERVER_PLAY);
     

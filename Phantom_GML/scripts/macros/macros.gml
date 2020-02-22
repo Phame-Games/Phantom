@@ -1,5 +1,7 @@
 #macro BROADCAST_RATE 60
 
+#macro GAME_ID 1
+
 #macro NETWORK_CONNECT 0
 #macro NETWORK_LOGIN 2
 #macro NETWORK_PLAY 1

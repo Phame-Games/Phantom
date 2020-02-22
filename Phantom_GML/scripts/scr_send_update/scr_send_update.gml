@@ -10,7 +10,10 @@
 with obj_client {
     // Move to start of buffer. Networking ALWAYS takes the data from the START of a buffer.
     buffer_seek(buff, buffer_seek_start, 0);
-
+	
+	//write GAME ID to uniquely define game
+	buffer_write(buff, buffer_u8, GAME_ID)
+	
     //write msgId
     buffer_write(buff, buffer_s8, CLIENT_PLAY);
     
