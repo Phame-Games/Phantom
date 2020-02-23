@@ -38,7 +38,7 @@ for (i = 0; i < count; i++) {
 	buffer_write(buff, buffer_string, inst.name)
 	}
     
-buffer_write(buff, buffer_u32, obj_client.seeed);
+buffer_write(buff, buffer_u32, obj_client.rand_seed);
 
 //total number of players, local and online
 buffer_write(buff, buffer_u8, ds_list_size(global.Menu.players)); //buffer_u8 MAX: 255
