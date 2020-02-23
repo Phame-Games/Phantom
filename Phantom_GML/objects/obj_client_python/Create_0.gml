@@ -6,6 +6,10 @@ type = network_socket_tcp;
 ip_address = "127.0.0.1";
 port = 64198;
 
+//set timeout to connect, 4000 recommened for online, 1000 for LAN
+network_set_config(network_config_connect_timeout, 4000);
+//network_set_config(network_config_use_non_blocking_socket, 1);
+
 // Create the socket
 socket = network_create_socket( type );
 network_connect_raw( socket, ip_address, port );

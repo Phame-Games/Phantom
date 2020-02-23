@@ -714,7 +714,7 @@
             "Key": "b9cc71f2-0237-4a55-b14b-edbd3f61ef84",
             "Value": {
                 "id": "e993cbf9-2d04-438e-b2c9-0bb2f8e857a4",
-                "resourcePath": "objects\\obJ_client_python\\obJ_client_python.yy",
+                "resourcePath": "objects\\obj_client_python\\obj_client_python.yy",
                 "resourceType": "GMObject"
             }
         },
