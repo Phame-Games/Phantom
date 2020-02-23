@@ -1,40 +1,33 @@
 /// @description Initialize variables
 
-//Score
-game_score = 0
+//created for each player on the network
 
-//Repair queue
-repair_list = ds_list_create()
-local_repair_list = ds_list_create()
+connect_id = -1 //order in which client connected to server, not an index to any list!
 
-//Create objects
-Train = instance_create_layer(x, y, "Instances", obj_train)
-Train.player = self;
-Repair = instance_create_layer(x, y, "Instances", obj_repairman)
-Repair.player = self;
+//create map unit
+Unit = instance_create_layer(room_width/2, room_height/2, "Instances", obj_unit);
+Unit.Player = self;
 
-trains = 3
-sound = snd_horn1
+//to - target direction to move
+to = -1
 
-//Networking
-connect_id = -1
+#region Input
+controls = 0; //input index in controls array
 
-//Lay the starting rails
+// inputs - array holding the current state of each input
+inputs_length = array_length_2d(global.controls, controls)
+inputs = array_create(inputs_length);
 
-for (var i = 0; i < 4; i ++) {
-	var tile = instance_position(x + 32*i, y, obj_track)
-	var rock = instance_position(x + 32*i, y, obj_rock)
-	if instance_exists(tile){
-		tile.image_index = 0
-	}
-	else if instance_exists(rock){
-		instance_create_layer(x + 32*i, y, "Instances", obj_track)
-		instance_destroy(rock)
-	}
-	else{
-		instance_create_layer(x + 32*i, y, "Instances", obj_track)
-	}
-}
-instance_create_layer(x, y, "Instances", obj_blank)
+// mouse input
+mouseX = 0;
+mouseY = 0;
+//gamepad aiming
+gamepad_aimx = 0//value -1 to 1, right joystick
+gamepad_aimy = 0//value -1 to 1, right joystick
+ 
+input_buffer = 0; //small buffer to slow down gamepad input
+input_buffer_max = 4;
+#endregion
 
+//Post-initialization setup
 alarm[0] = 1

@@ -1,9 +1,6 @@
-/// @description scr_server_received_data()
-/*
-* Description:  read incoming client data
-* Parameters:   none
-* Return:       void
-*/
+/// @function scr_server_recieved_data()
+/// @description Read client message data
+// Returns null
 
 //start
     {  
@@ -37,45 +34,31 @@
 	            inst.mouseX = buffer_read(buff, buffer_u16);
 	            inst.mouseY = buffer_read(buff, buffer_u16);
                 break;
-			case TILE_CMD:
-				//Everything is with respect to obj_server
-				var xx = buffer_read(buff, buffer_u16)
-				var yy = buffer_read(buff, buffer_u16)
-	            ds_list_add(tiles, instance_position(xx, yy, obj_track))
-				ds_list_add(tile_change_types, buffer_read(buff, buffer_u8))
-				show_debug_message("Recieve tile click" + string(ds_list_find_value(tiles, ds_list_size(tiles)-1)) + " " + string(xx) + " " + string(yy))
-                break;
 			case UPDATE_CMD:
-				//Write all players
+				#region Client update
+				inst.Player.to = buffer_read(buff, buffer_s8)
+//				show_debug_message("scr_server_recieved Update_CMD: " + string(inst.Player.to))
+
+				/*
+				//read amount of players
 				var count = buffer_read(buff, buffer_u8)
-				// check for clients to send confirmations
+				
+				//check each client
 				for (i = 0; i < count; i++) { 
-					var player = ds_list_find_value(obj_menu.game_players, i)
-					//Train speed
-					player.Train.move_speed = buffer_read(buff, buffer_u8)/10
-					//Repair list
-					//ds_list_clear(player.repair_list)
-					var repair_amount = buffer_read(buff, buffer_u8)
-					for (var j = 0; j < repair_amount; j++) {
-						cx = buffer_read(buff, buffer_u16)
-						cy = buffer_read(buff, buffer_u16)
-						var crack = instance_position(cx, cy, obj_cracks)
-						if instance_exists(crack) {
-							if ds_list_find_index(player.repair_list, crack) == -1{
-								ds_list_add(player.repair_list, crack)
-							}
-						}
-					}
+					var player = ds_list_find_value(global.Menu.Game_Players, i)
 				}
+				*/
+				#endregion
 				break;
             case PING_CMD:
-                // client message, confirm login
+				#region Ping
+                //client message, confirm login
                 ds_map_replace(clientMessages, ip, SERVER_PLAY);  
                 
-                // read the latest sequence that the client recieved
+                //read the latest sequence that the client recieved
                 var sequenceIn = buffer_read(buff, buffer_u8);
                 
-                // get the index
+                //get the index
                 var index = ds_list_find_index(iplist, ip);
                 
                 // check if sequence is still in the queue
@@ -88,6 +71,7 @@
                     
                 // reset drop buffer
                 inst.alarm[0] = inst.dropBuffer;
+				#endregion
                 break;
             }
         }

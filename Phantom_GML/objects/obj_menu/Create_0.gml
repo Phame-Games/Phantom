@@ -1,27 +1,35 @@
-/// @description Insert description here
-// You can write your code in this editor
-state = STATE_ONLINE; //current game state
-state_queue = ds_stack_create()//holds states in order visited for universal back button
+/// @description Initialize menus
+
+//universal game access
 global.Menu = self
 global.online = true
 
-//set fullscreen
-//window_set_fullscreen(true)
+scr_set_controls_default(0, CONTROLS_KEYBOARD)
+
+//state - current "menu" of the game
+state = STATE_ONLINE
+//holds states in order visited for universal back button
+state_queue = ds_stack_create()
+
 
 buttons = ds_list_create(); //holds menu buttons
 selected = 0; //selected button
 input_buffer = 0; //small buffer to slow down gamepad input
-input_buffer_max = 4;
+input_buffer_max = 8
+keyboard_input = false	//whether to show selection via keyboard
+prev_mouse_x = mouse_x	//check to see if mouse move to turn off keyboard input
 
-players = ds_list_create();
-readys = ds_list_create();
-names = ds_list_create();
-game_players = ds_list_create();
+//parallel arrays, use ds_list_find_index(players, connect_id) to get index
+players = ds_list_create()	//index is connect id for both local and network players
+readys = ds_list_create()
+names = ds_list_create()
 
-///Server
-// list to hold data for different menus, lobby
+Game_Players = ds_list_create(); //obj_player, created in room start
+
+//list to hold data for different menus, lobby
 server_data = ds_list_create();
 
+//universal colour array
 ColourArray[0] = $80ff80;
 ColourArray[1] = c_red;
 ColourArray[2] = c_blue;

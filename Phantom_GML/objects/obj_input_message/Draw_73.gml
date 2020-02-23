@@ -26,10 +26,11 @@ else
     pw = mw/2+sb;
 
 // box drawing
+var b = 8
 draw_set_color(c_dkgray);
-draw_rectangle(x-pw, y-ph, x+pw, y+ph, false);
+draw_rectangle(x-pw, y-ph, x+pw, y+ph+b, false);
 draw_set_color(c_gray);
-draw_rectangle(x-pw, y-ph, x+pw, y+ph, true);
+draw_rectangle(x-pw, y-ph, x+pw, y+ph+b, true);
 draw_set_color(c_white);
 draw_text(x, y-ro, string_hash_to_newline(prompt));
 

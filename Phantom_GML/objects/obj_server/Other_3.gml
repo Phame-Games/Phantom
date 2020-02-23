@@ -1,4 +1,4 @@
-/// @description close server
+/// @description Close server
 
 // destroy server
 global.have_server = false;

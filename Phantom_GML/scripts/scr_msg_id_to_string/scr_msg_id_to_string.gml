@@ -1,10 +1,7 @@
-/// @description scr_msg_id_to_String(msgID)
+/// @function scr_msg_id_to_String(msgID)
+/// @description Converts macro value to string of macro name
 /// @param msgID
-/* 
-* Description:  takes the msgID contsant and returns the corresponding string
-* Parameters:   msgID
-* Returns:      string
-*/
+// Returns name of macro
 
 // set input
 var msgID = argument0;

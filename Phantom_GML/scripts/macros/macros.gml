@@ -1,3 +1,9 @@
+#macro BROADCAST_RATE 60
+
+#macro GAME_ID 1
+
+#macro GRID 32
+
 #macro NETWORK_CONNECT 0
 #macro NETWORK_LOGIN 2
 #macro NETWORK_PLAY 1
@@ -15,6 +21,7 @@
 #macro PING_CMD 1
 #macro TILE_CMD 2
 #macro UPDATE_CMD 3
+#macro SYNC_CMD 4
 
 #macro KEY_PRESSED 2
 #macro KEY_ISPRESSED 1

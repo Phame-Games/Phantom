@@ -1,12 +1,8 @@
-/// @description scr_update_input(oldState, newState)
+/// @function scr_update_input(oldState, newState)
+/// @description Updates the input state by one step
 /// @param oldState
-/// @param  newState
-/* 
-* Description:  update the control to the next state
-* Parameters:   oldState - the old state of the input
-*               newState - the new target state
-* Returns:      real - state
-*/
+/// @param newState | Target state, not always the one that will be returned
+// Returns determined new state
 
 // set input
 var oldState = argument0;
@@ -26,6 +22,7 @@ switch (oldState) {
     case KEY_ISPRESSED:
         switch (newState) {
             case KEY_PRESSED:
+				return KEY_PRESSED;
             case KEY_ISPRESSED:
                 return KEY_ISPRESSED;
             case KEY_RELEASED:

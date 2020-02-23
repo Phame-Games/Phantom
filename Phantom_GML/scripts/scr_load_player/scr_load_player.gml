@@ -1,9 +1,6 @@
-/// @description scr_load_player()
-/* 
-* Description:  Loads the controls
-* Parameters:   none
-* Returns:      void
-*/
+/// @function scr_load_player()
+/// @description Loads the player data
+// Returns null
 
 // open file
 if (file_exists("player.ini")) {
@@ -11,8 +8,8 @@ if (file_exists("player.ini")) {
     
     // load name
     var section = "online";
-    iServerName.text = ini_read_string(section, "name", "Newbius");
-	directIP.text = ini_read_string(section, "direct_ip", "192.168.1.1");
+    Name_input.text = ini_read_string(section, "name", "Newbius");
+	Direct_IP.text = ini_read_string(section, "direct_ip", "192.168.1.1");
     
     //close file
     ini_close();

@@ -1,8 +1,8 @@
 /// @description Input
 
-// check if game is paused
-//if !(instance_exists(obj_input_button)){
-{
+#region Local input, menus, buttons
+//check if game is paused
+if !(instance_exists(obj_input_message)){
     var haxis = 0; //left or right
     var vaxis = 0; //up or down
     var action = false; //clicking
@@ -10,28 +10,11 @@
     var axis_buffer = GAMEPAD_AXIS_TOL; //buffer till push starts counting
     
     //get input
-    if (input_buffer < 0) {
+    if (input_buffer < 0){
         //judge input based on current state
         switch(state){
-            case STATE_LOBBY:
-				#region STATE_LOBBY
-				
-                //press button
-                if (action) {
-                    //check if button exists
-                    var button = ds_list_find_value(buttons, selected);
-                    if (ds_list_size(buttons) > 0 and instance_exists(button)) {
-                        with (button) {
-							//peform the button's purpose
-                            event_user(0);
-                        }
-                    }
-                }
-            
-                break;
-				#endregion
             case STATE_GAME:
-                break; //no menu
+                break //no menu
             default: //other menus
 				#region Get input
 				//gamepad input
@@ -48,6 +31,13 @@
 		        }
         
 		        //keyboard input
+				if keyboard_check(vk_anykey) keyboard_input = true; //show selection via keyboard
+				if mouse_x != prev_mouse_x{
+					if keyboard_input == 1{
+						keyboard_input = 2 //reset button click
+					}
+					prev_mouse_x = mouse_x
+				}
 		        if (keyboard_check(vk_left) or keyboard_check(ord("A")) or keyboard_check(ord("J"))) haxis = -1;
 		        if (keyboard_check(vk_right) or keyboard_check(ord("D")) or keyboard_check(ord("L"))) haxis = 1;
 		        if (keyboard_check(vk_up) or keyboard_check(ord("W")) or keyboard_check(ord("I"))) vaxis = -1;
@@ -60,111 +50,120 @@
 				}
 				#endregion
 				#region Default
-				
-                //button controls
-                var button = ds_list_find_value(buttons, selected);
-                
-                //selector
-                if (!is_undefined(button)) {
+	            //selector
+	            if (ds_list_size(buttons) > 0){
+//					show_debug_message("obj_menu.Step buttons size: " + string(ds_list_size(buttons)))
+//						show_debug_message("obj_menu.Step selected: " + string(selected))
+					//button controls
+					var button = ds_list_find_value(buttons, selected);
+					
 					//if on value button limit changes of selection to only down and up to allow left and right to change value
-                    if (instance_exists(button) and button.action == "value" or button.action == "valueAction"){
-                        selected = scr_increment_in_bounds(selected, vaxis, 0, ds_list_size(buttons)-1, true);
+	                if (instance_exists(button)){
+//						show_debug_message("obj_menu.Step Button exists")
+						//show button as selected
+						if keyboard_input == 1{
+							button.image_index = 1
+						}
+						else if keyboard_input == 2{
+							button.image_index = 0
+							keyboard_input = false
+						}
+							
+						if haxis != 0 or vaxis != 0{
+							//no longer show button as selected
+							button.image_index = 0
+							if (button.action == "value" or button.action == "valueAction"){
+								selected = scr_increment_in_bounds(selected, vaxis, 0, ds_list_size(buttons)-1, true);
+							}
+							else{
+			                    selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
+							}
+						}
+						
+			            if (button.action == "value") {
+			                button.value = scr_increment_in_bounds(button.value, haxis, 0, ds_list_size(button.values)-1, true);
+			            }
+					
+			            else if (button.action == "valueAction") {
+			                button.value = scr_increment_in_bounds(button.value, haxis, 0, ds_list_size(button.values)-1, true);
+			                // if value changed do action
+			                if (haxis != 0)
+			                    with (button) event_user(1);
+			            }
+					
+			            // press button
+			            if (action) {
+			                with (button) {
+								//perform the button's action
+			                    event_user(0);
+			                }
+			            }
 					}
 					//else allow any direction to change selected button
-                    else{
-                        selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
+	                else{
+	                    selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
 					}
-                }
-				//DESCR?
+					
+	            }
+				//else allow any direction to change selected button
 				else{
-                    selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
+	                selected = scr_increment_in_bounds(selected, haxis+vaxis, 0, ds_list_size(buttons)-1, true);
 				}
-                                
-                //DESCR?
-                if (ds_list_size(buttons) > 0 and instance_exists(button)) {
-                    if (button.action == "value") {
-                        button.value = scr_increment_in_bounds(button.value, haxis, 0, ds_list_size(button.values)-1, true);
-                    }
-					
-                    else if (button.action == "valueAction") {
-                        button.value = scr_increment_in_bounds(button.value, haxis, 0, ds_list_size(button.values)-1, true);
-                        // if value changed do action
-                        if (haxis != 0)
-                            with (button) event_user(1);
-                    }
-					
-                    // press button
-                    if (action) {
-                        with (button) {
-							//perform the button's action
-                            event_user(0);
-                        }
-                    }
-                }
-				
-				break
-				
+//				show_debug_message("obj_menu.Step pso tselected: " + string(selected))
 				#endregion
+				break
         }
     }
 	
     else input_buffer--;
 }
+#endregion
 
-
-/// client input
-//REMOVE? Switch case with 1 case
-switch(state) {
-    case STATE_LOBBY:
-        if(global.online and global.have_server) {
-            var Server = obj_server;
+#region Lobby server input
+if state = STATE_LOBBY and global.online and global.have_server {
+	#region Update readys for network players
+    var Server = obj_server;
 			
-            // check for client input
-            var count = ds_list_size(Server.iplist); //total number of players
-            var iplist = Server.iplist //store locally because it is called many times
+    // check for client input
+    var count = ds_list_size(Server.iplist); //total number of players
+    var iplist = Server.iplist //store locally because it is called many times
             
-            //check join key for each player
-            for(i=0 ;i<count; i++) {   
-                //get the ip
-                var ip = ds_list_find_value(iplist,i);
+    //check join key for each player
+    for (var i = 0; i < count; i++) {   
+        //get the ip
+        var ip = ds_list_find_value(iplist,i);
         
-                //get the player instance so that we can check it
-                var inst = ds_map_find_value(Server.Clients, ip);
-                
-                // other input
-                var playerIndex = ds_list_find_index(players, inst.connectID);
-
-                // initiate input
-                var vaxis = 0;
-                var haxis = 0;
-                
-                // get input
-                if (inst.inputs[2] == KEY_PRESSED) {
-                    ds_list_replace(readys, playerIndex, scr_toggle(ds_list_find_value(readys, playerIndex)));
-                    // unpress key
-                    inst.inputs[2] = scr_toggle_key(inst.inputs[2]);
-                }
-            }
-			
-			//REMOVE? Duplicate code to above, perhaps this should be a script, it would clean things up
-            // if there is a player in the lobby
-            if (ds_list_size(players)){
-                // check for start
-                var start = true; // set to false if a player is not ready
-                
-                // check if any player is not ready
-                for(i = 0; i < ds_list_size(players); i++) {   
-                    if !(ds_list_find_value(readys, i)) start = false;
-                }
-                
-                // start if all are ready
-                if (start) {
-                    // start game
-                    show_debug_message("All ready!");
-                    
-                    // switch to path menu
-                    scr_state_switch(STATE_LOBBY, STATE_GAME)
-                }
-            }
+        //get the player instance so that we can check it
+        var inst = ds_map_find_value(Server.Clients, ip);
+        
+		var index = ds_list_find_value(players, inst.connect_id)
+        // get input
+        if (inst.inputs[2] == KEY_PRESSED) {
+            ds_list_replace(readys, index, scr_toggle(readys[| index]))
+            // unpress key
+            inst.inputs[2] = scr_toggle_key(inst.inputs[2]);
         }
+    }
+	#endregion
+			
+	//if there is a player in the lobby
+    if (ds_list_size(players)) {
+        //check for start
+        var start = true; //set to false if a player is not ready
+                
+        //check if any player is not ready
+        for(i = 0; i < ds_list_size(players); i++) {   
+            if !(ds_list_find_value(readys, i)) start = false;
+        }
+                
+        //start if all are ready
+        if (start) {
+            //start game
+            show_debug_message("All ready!");
+                    
+            //switch to next menu
+            scr_state_switch(STATE_LOBBY, STATE_GAME)
+        }
+    }
 }
+#endregion

@@ -1,11 +1,9 @@
-/*
-/ Description: send the buffer to the specified client
-/ Script Call: scr_send_buffer(ip, index, buffer)
-/ Parameters : ip - given, because ip needs to be found to check client state
-/              index - client index in the parallel arrays
-/              buffer - buffer with information to send
-/ Return     : void
-*/
+/// @function scr_send_buffer()
+/// @description Server function to send a buffer to a client, individualized
+/// @param ip | Ip needs to be found to check the client's state
+/// @param index | client index in the parallel arrays
+/// @param buffer | buffer with information to send
+// Returns null
 
 // set input
 var ip = argument0;
@@ -21,10 +19,10 @@ var inst = ds_map_find_value(Clients, ip);
 inst.socketOut = socket;
 
 // update to the clients specific sequence out
-buffer_seek(buffer, buffer_seek_start, 1);
+buffer_seek(buffer, buffer_seek_start, 2);
 var sequenceOut = sequenceOuts[| index];
 buffer_write(buffer, buffer_u8, sequenceOut);
-buffer_write(buffer, buffer_u8, inst.connectID);
+buffer_write(buffer, buffer_u8, inst.connect_id);
 buffer_seek(buffer, buffer_seek_end, 0);
 sequenceOuts[| index] = scr_increment_in_bounds(sequenceOut, 1, 0, SEQUENCE_MAX, true);
 

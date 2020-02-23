@@ -1,10 +1,11 @@
-/// @description  drop player if ping is not keeping him alive
+/// @description Drop player if ping is not keeping him alive
 
 //also delete the socket from our global list of connected clients
 with (obj_server) {
     // delete refrence in clients list
-    ds_map_delete(Clients, other.ip);
-    ds_map_delete(clientMessages, other.ip);
+    ds_map_delete(Clients, other.ip)
+	ds_map_delete(connect_ips, other.connect_id)
+    ds_map_delete(clientMessages, other.ip)
     
     // find index in parallel arrays using client ip
     var index = ds_list_find_index(iplist, other.ip);
@@ -24,26 +25,6 @@ if (state == STATE_LOBBY) {
     with (global.Menu) scr_join_lobby(other);
     }
 
-/*
-if (state == STATE_GAME) {
-    // delete character
-    if (instance_exists(gameCharacter))
-        instance_destroy(gameCharacter);
-    }
-    */
-/*
-if (state == STATE_GAME or state == STATE_SCORE) {
-    // remove from team
-    var index = ds_list_find_index(Team.players, self);
-    ds_list_delete(Team.players, index);
-    // delete team if last player
-    if (ds_list_empty(Team.players)) {
-        ds_map_delete(global.Menu.game_teams, Team);
-        instance_destroy(Team);
-        }
-    }
-*/
-
-// destory self
+//destory self
 instance_destroy();
 
