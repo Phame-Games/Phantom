@@ -44,7 +44,7 @@ with (global.Menu) {
 					instance_destroy(obj_server)
 					break
                 case STATE_GAME:
-					random_set_seed(obj_client.seeed)
+					random_set_seed(obj_client.rand_seed)
                     room_goto_next()
                     break;
 			}
