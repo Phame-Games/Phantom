@@ -5,7 +5,7 @@ global.Client = self
 
 #region Game
 //random generator seed
-seeed = current_time
+rand_seed = current_time
 
 //keep track of local player object
 Player = noone
