@@ -55,49 +55,30 @@ def switch_character(Unit):
     else:
         Unit.switch_character(choice)
     
-def unit_turn(Unit, computer):
-    '''complete one unit turn
+def choose_action(Unit):
+    '''have unit choose an action
        Unit - Unit object
-       computer - whether or not unit is computer controlled
     '''
-    continue_interaction = True
-
     Character = Unit.get_character()
     
     #interaction options
-    print("{}'s Turn".format(Unit.name))
-    print("1: Do Character Action")
-    print("2: Propose Truce")
+    print("{} Choose an Action".format(Unit.name))
 
+    #character action
+    Character.print_actions()
     try:
-        interaction_choice = int(input("Choose option number: "))
+        #get action choice
+        action_choice = str(input("Choose action: "))
     except:
         print("Invalid Input")
         continue_interaction = False
     else:
-        if interaction_choice == 1:
-            #character action
-            Character.print_actions()
-            try:
-                #get action choice
-                action_choice = str(input("Choose action: "))
-            except:
-                print("Invalid Input")
-                continue_interaction = False
-            else:
-                #check if action is in character
-                if Character.check_action(action_choice):
-                    #do action
-                    do_actions(unit[0].get_do_list(), unit[1].get_do_list(), unit[0].get_character.get_do_list(), unit[1].get_character.get_do_list(), action1, action2)
-                else:
-                    print("Action is not available for this character")
-        elif interaction_choice == 2:
-            #propose truce
-            asdf = 3
+        #check if action is in character
+        if Character.check_action(action_choice):
+            #do action
+            Unit.set_action(action_choice)
         else:
-            print("Not one of the options")
-    
-    return continue_interaction
+            print("Action is not available for this character")
             
 #setup actions
 action.load_actions()
@@ -151,7 +132,16 @@ while(continue_interaction):
                 switch_character(units[index])
     #Do an Action
     elif 4 in unit_action_types:
+        #choose actions
         for index in range(len(unit_actions)):
-            flee(units[index])
-    
-    #continue_interaction = unit_turn(units[0], False)
+            if unit_actions[index] == 4 or 2:
+                choose_action(units[index])
+        
+        #do action
+        do_actions(units[0].get_do_list(), units[1].get_do_list(), units[0].get_character.get_do_list(), units[1].get_character.get_do_list(), units[0].get_action, units[1].get_action)
+        
+        #check if interaction ended
+        for Unit in units:
+            if True in set(Unit.get_character.results):
+                continue_interaction = False
+                break

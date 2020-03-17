@@ -116,7 +116,7 @@ class Character:
             print("Action {} is not loaded!".format(action_name))
     
     def print_actions(self):
-        print("Character Actions:")
+        print("{} Actions:".format(str(self)))
         #print header
         class_names = list(act.action_class.keys())
         print("{:10} | {:10} | {:10} | {:10}".format(class_names[0], class_names[1], class_names[2], class_names[3]))

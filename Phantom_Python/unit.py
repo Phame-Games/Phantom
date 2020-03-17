@@ -30,6 +30,9 @@ class Unit:
         #[constant, temp]
         self.relationship = [0, 0]
         self.notoriety = [0, 0]
+        
+        #interaction variables
+        action = "none"
 
     def add_character(self, character_name):
         character = create_character(character_name)
@@ -54,3 +57,9 @@ class Unit:
         #[team, realtionship ID,
         #self.relation_ship[0] = rels.find_relationship()
         [self.team, 0, self.relationship, self.notoriety, get_character_relation_list()]
+    
+    def set_action(self, action):
+        self.action = action_dict[action]
+    
+    def get_action(self, action):
+        return self.action
