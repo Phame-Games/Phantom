@@ -6,8 +6,11 @@
 
 #imports
 import action as act
+from pyexcel_ods import get_data
 
 __author__ = "Gabriel Frey"
+
+character_type = {"Undead": 0}
 
 #Functions
 def create_character(name):
