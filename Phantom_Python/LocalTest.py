@@ -12,6 +12,49 @@ import action
 __author__ = "Gabriel Frey"
 
 #Functions
+def choose_unit_action(Unit):
+    #options
+    print("{}'s Turn".format(Unit.name))
+    print("1: Flee")
+    print("2: Propose Truce")
+    print("3: Switch Characters")
+    print("4: Do an Action")
+
+    try:
+        interaction_choice = int(input("Choose option number: "))
+        if not(0 < interaction_choice < 5):
+            raise ValueError("Not one of the options")
+    except TypeError:
+        print("Invalid Input")
+    except ValueError:
+        print("Not one of the options")
+    else:
+        return interaction_choice
+
+    return(-1)
+
+def flee(Unit):
+    print(Unit.name + " flee'd")
+    return True
+
+def truce(Unit):
+    return True
+
+def switch_character(Unit):
+    print("{} Switch Characters".format(Unit.name))
+    Unit.print_all_characters()
+
+    try:
+        choice = int(input("Choose character number: "))
+        if not(0 <= choice < len(Unit.characters)):
+            raise ValueError("Not one of the options")
+    except TypeError:
+        print("Invalid Input")
+    except ValueError:
+        print("Not one of the options")
+    else:
+        Unit.switch_character(choice)
+    
 def unit_turn(Unit, computer):
     '''complete one unit turn
        Unit - Unit object
@@ -67,6 +110,8 @@ units.append(Unit())
 
 #add characters
 units[0].add_character("Zomboy")
+units[1].add_character("Zomboy")
+units[1].add_character("Radioactive Meerkat")
 units[1].add_character("Radioactive Meerkat")
 
 #setup interaction
@@ -77,4 +122,36 @@ print("##############################")
 print("Begin Interaction")
 print("##############################")
 while(continue_interaction):
-    continue_interaction = unit_turn(units[0], False)
+    #Unit action
+    unit_actions = []
+    #get action choices
+    for Unit in units:
+        unit_actions.append(choose_unit_action(Unit))
+
+    #carry out choices
+    unit_action_types = set(unit_actions)
+    #Flee
+    if 1 in unit_action_types:
+        for index in range(len(unit_actions)):
+            if unit_actions[index] == 1:
+                if flee(units[index]):
+                    continue_interaction = False
+                    break
+    #Propose Truce
+    elif continue_interaction and 2 in unit_action_types:
+        for index in range(len(unit_actions)):
+            if unit_actions[index] == 2:
+                if truce(units[index]):
+                    continue_interaction = False
+                    break
+    #Switch Characters
+    elif continue_interaction and 3 in unit_action_types:
+        for index in range(len(unit_actions)):
+            if unit_actions[index] == 3:
+                switch_character(units[index])
+    #Do an Action
+    elif 4 in unit_action_types:
+        for index in range(len(unit_actions)):
+            flee(units[index])
+    
+    #continue_interaction = unit_turn(units[0], False)

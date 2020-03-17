@@ -88,6 +88,8 @@ class Character:
         #[befrieneded, intimidated, fled, stunned]
         self.results = [False, False, False, False]
         
+    def __str__(self):
+        return(self.name)
     
     def add_action(self, action_name):
         """Adds action object to character

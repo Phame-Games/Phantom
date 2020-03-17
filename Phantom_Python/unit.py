@@ -17,6 +17,7 @@ class Unit:
         self.sel_character = 0
         
         self.name = "Unit"
+        self.computer = False
         
         #TODO - add external
         hp = 100
@@ -39,6 +40,15 @@ class Unit:
     
     def get_character(self):
         return self.characters[self.sel_character]
+        
+    def print_all_characters(self):
+        print("Selected Character: " + str(self.characters[self.sel_character]))
+        print("Character List:")
+        for i in range(len(self.characters)):
+            print("{}: {}".format(i, str(self.characters[i])))
+    
+    def switch_character(self, index):
+        self.sel_character = index
     
     def get_do_list(self):
         #[team, realtionship ID,
