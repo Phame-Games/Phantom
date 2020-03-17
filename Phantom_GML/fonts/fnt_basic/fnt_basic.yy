@@ -1,7 +1,7 @@
 {
     "id": "59d84daa-006f-49c6-b1aa-9a6c0d2d1294",
     "modelName": "GMFont",
-    "mvc": "1.1",
+    "mvc": "1.0",
     "name": "fnt_basic",
     "AntiAlias": 1,
     "TTFName": "${project_dir}\\fonts\\fnt_basic\\kenvector_future.ttf",
@@ -10,7 +10,6 @@
     "charset": 0,
     "first": 0,
     "fontName": "KenVector Future",
-    "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
@@ -1453,16 +1452,13 @@
             }
         }
     ],
-    "hinting": 0,
+    "image": null,
     "includeTTF": true,
-    "interpreter": 0,
     "italic": false,
     "kerningPairs": [
         
     ],
     "last": 0,
-    "maintainGms1Font": false,
-    "pointRounding": 0,
     "ranges": [
         {
             "x": 32,
