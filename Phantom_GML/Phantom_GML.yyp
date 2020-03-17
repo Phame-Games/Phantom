@@ -175,6 +175,14 @@
             }
         },
         {
+            "Key": "1f1301d9-9b5b-47bf-b089-19a005480362",
+            "Value": {
+                "id": "5d51b42a-d995-4b9c-8367-558932fe5337",
+                "resourcePath": "views\\1f1301d9-9b5b-47bf-b089-19a005480362.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "25fa5519-fc07-49a0-ad4c-fd5f27f3dcb9",
             "Value": {
                 "id": "20eb0522-abee-4dc7-bcda-1156f22f4551",
@@ -511,6 +519,14 @@
             }
         },
         {
+            "Key": "79d22dec-ae12-402a-b7ef-ea11b77b5a97",
+            "Value": {
+                "id": "8bc4f85f-106a-4c5b-98c1-270b9f14c2e4",
+                "resourcePath": "scripts\\HandlePacketClient\\HandlePacketClient.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7a10c437-e4b9-4237-b13e-42d8c42b910a",
             "Value": {
                 "id": "a614e87a-11f9-495e-b17b-918732f662c6",
@@ -692,6 +708,14 @@
                 "id": "623cb130-85ab-4ccf-ae83-fbae77c775ab",
                 "resourcePath": "fonts\\fnt_basic_large\\fnt_basic_large.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "b9cc71f2-0237-4a55-b14b-edbd3f61ef84",
+            "Value": {
+                "id": "e993cbf9-2d04-438e-b2c9-0bb2f8e857a4",
+                "resourcePath": "objects\\obj_client_python\\obj_client_python.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -896,7 +920,8 @@
         "a2c7ba4f-15dd-4988-891c-601f8445ae52",
         "a2ff5f20-3edf-40c7-89c0-013e37926494",
         "3242ec3f-4b65-4cb6-9f7f-96c94455a952",
-        "ef013ca6-19cc-4f27-83f3-99dcb62ee4a8"
+        "ef013ca6-19cc-4f27-83f3-99dcb62ee4a8",
+        "79d22dec-ae12-402a-b7ef-ea11b77b5a97"
     ],
     "tutorial": ""
 }

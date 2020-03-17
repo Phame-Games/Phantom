@@ -1,6 +1,9 @@
 #macro BROADCAST_RATE 60
 
-#macro GAME_ID 1
+#macro LAY "Instances"
+
+#macro GAME_ID 127
+#macro GAME_ID_PYTHON 126
 
 #macro GRID 32
 

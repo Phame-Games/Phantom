@@ -9,3 +9,6 @@ buffer_delete(buff)
 //destroy lists
 ds_list_destroy(network_players)
 ds_list_destroy(network_names)
+
+//destory python client
+instance_destroy(Client_Python)
