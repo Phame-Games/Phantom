@@ -19,13 +19,15 @@ action_class = {"attack": 0, "defend": 1, "charm": 2, "intimidate": 3}
 #Functions
 #load external list of all actions
 def load_actions():
-    data = get_data("actions.ods")
-    
+    data = get_data("data.ods")
+    #print(data)
     #get amount of actions listed in file
-    action_amount = len(data["list"])
-    #start in row 1 to skip headers
-    for i in range(1, action_amount - 1):
-        add_action(data["list"][i])
+    action_amount = len(data["actions"])
+    #start in row 1 to skip headers, -1 since it ends with a blank row
+    for i in range(1, action_amount):
+        #check for empty row
+        if len(data["actions"][i]) > 0:
+            add_action(data["actions"][i])
     
     #print results
     print("load_actions results:")
@@ -44,7 +46,7 @@ def add_action(action_data):
     try:
         action = Action(action_data)
     except TypeError:
-        print("Action {} creation failed.".format(action_data[0]))
+        print("Error: Action {} creation failed.".format(action_data[0]))
     else:
         #get what index in the list this action will be for the dictionary
         action_index = len(action_list)
@@ -64,7 +66,7 @@ class Action:
         try:
             self.class_index = action_class[ad[1]]
         except KeyError:
-            print("Action {} creation failed. Action Class not valid: '{}'. Please use a valid option: ".format(self.name, action_data[1]))
+            print("Error: Action {} creation failed. Action Class not valid: '{}'. Please use a valid option: ".format(self.name, action_data[1]))
             print(action_class.keys())
             #raise a type error, return an int instead of None
             return -1

@@ -6,6 +6,7 @@
 
 #imports
 from unit import *
+from character import load_characters
 import action
 
 __author__ = "Gabriel Frey"
@@ -57,6 +58,7 @@ def unit_turn(Unit, computer):
             
 #setup actions
 action.load_actions()
+load_characters()
 
 #setup units
 units = []
@@ -65,7 +67,7 @@ units.append(Unit())
 
 #add characters
 units[0].add_character("Zomboy")
-units[1].add_character()
+units[1].add_character("Radioactive Meerkat")
 
 #setup interaction
 continue_interaction = True

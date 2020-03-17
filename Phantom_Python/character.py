@@ -7,23 +7,68 @@
 #imports
 import action as act
 from pyexcel_ods import get_data
+import copy
 
 __author__ = "Gabriel Frey"
 
-character_type = {"Undead": 0}
+character_type = {"Undead": 0, "Radioactive": 1}
+character_dict = {}
 
 #Functions
+def load_characters():
+    data = get_data("data.ods")
+    
+    #get amount of characters listed in file
+    character_amount = len(data["characters"])
+    #start in row 1 to skip headers
+    for i in range(1, character_amount, 3):
+        add_character(data["characters"], i)
+    
+    #print results
+    print("load_characters results:")
+    print("character_dict:")
+    print(character_dict)
+
+def add_character(data, index):
+    print("Load character: " + str(data[index:index + 3]))
+    #attempt to create character
+    name = data[index][0]
+    
+    try:
+        char_type = character_type[data[index][1]]
+        #character entry
+        Base_Character = Character(name, char_type, float(data[index][2]), float(data[index][3]), float(data[index][4]), data[index + 1][1:], data[index + 2][1:])
+        #character.set_available_actions()
+    except KeyError:
+        print("Error: Character {} creation failed. {} is not a valid type.".format(name, data[index][1]))
+    else:
+        #add name reference
+        character_dict[name] = Base_Character
+	
 def create_character(name):
-    \
+    #check if character is loaded
+    try:
+        index = character_dict[name]
+    except:
+        print("Erro: Character {} not in Character Dictionary".format(name))
+        return -1
+    else:
+        return copy.deepcopy(character_dict[name])
+    
 class Character:
-    def __init__(self):
+    def __init__(self, name, char_type, attack, defense, speed, available_actions, starting_actions):
+        self.name = name
+        self.char_type = char_type
+        self.attack = attack
+        self.defense = defense
+        self.speed = speed
+        self.available_actions = available_actions
+        
         #four sets for the four action classes
         self.actions = [set(), set(), set(), set()]
-        #TODO - Add actions
-        self.add_action("slap")
-        self.add_action("guard")
-        self.add_action("dsdf")
-        self.add_action("sd")
+        #add actions
+        for action in starting_actions:
+            self.add_action(action) 
         
         #TODO - add external
         hp = 100
@@ -55,7 +100,7 @@ class Character:
             self.actions[class_index].add(action_name)
             print("Added action {} index: {}".format(action_name, index))
         else:
-            print("Action could not be added: {}".format(action_name))
+            print("Error: Action could not be added: {}".format(action_name))
     
     def check_action(self, action_name):
         index = act.action_dict.get(action_name, -1)

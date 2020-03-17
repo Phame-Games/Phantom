@@ -31,7 +31,11 @@ class Unit:
         self.notoriety = [0, 0]
 
     def add_character(self, character_name):
-        self.characters.append(create_character(character_name))
+        character = create_character(character_name)
+        if character != -1:
+            self.characters.append(character)
+        else:
+            print("Adding character {} failed.".format(character_name))
     
     def get_character(self):
         return self.characters[self.sel_character]
