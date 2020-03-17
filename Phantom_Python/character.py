@@ -9,6 +9,9 @@ import action as act
 
 __author__ = "Gabriel Frey"
 
+#Functions
+def create_character(name):
+    \
 class Character:
     def __init__(self):
         #four sets for the four action classes

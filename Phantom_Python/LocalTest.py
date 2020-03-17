@@ -64,7 +64,7 @@ units.append(Unit())
 units.append(Unit())
 
 #add characters
-units[0].add_character()
+units[0].add_character("Zomboy")
 units[1].add_character()
 
 #setup interaction

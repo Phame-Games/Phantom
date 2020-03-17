@@ -5,7 +5,7 @@
 """
 
 #imports
-from character import *
+from character import create_character
 from action import *
 
 __author__ = "Gabriel Frey"
@@ -30,12 +30,13 @@ class Unit:
         self.relationship = [0, 0]
         self.notoriety = [0, 0]
 
-    def add_character(self):
-        self.characters.append(Character())
+    def add_character(self, character_name):
+        self.characters.append(create_character(character_name))
     
     def get_character(self):
         return self.characters[self.sel_character]
     
     def get_do_list(self):
-        #[team, realtionship ID, 
+        #[team, realtionship ID,
+        #self.relation_ship[0] = rels.find_relationship()
         [self.team, 0, self.relationship, self.notoriety, get_character_relation_list()]
