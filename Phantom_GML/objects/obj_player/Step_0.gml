@@ -76,13 +76,13 @@ if !(instance_exists(obj_input_message)){
 		    if (global.Menu.state != STATE_GAME and buffer)
 		        input_buffer = input_buffer_max
 		
-			if inputs[RIGHT_KEY] and place_free(x + GRID, y)
+			if inputs[RIGHT_KEY] and position_meeting(Unit.x + GRID, Unit.y, obj_wall)
 				to = 0
-			else if inputs[UP_KEY] and place_free(x, y - GRID)
+			else if inputs[UP_KEY] and position_meeting(Unit.x, Unit.y - GRID, obj_wall)
 				to = 1
-			else if inputs[LEFT_KEY] and place_free(x - GRID, y)
+			else if inputs[LEFT_KEY] and position_meeting(Unit.x - GRID, Unit.y, obj_wall)
 				to = 2
-			else if inputs[DOWN_KEY] and place_free(x, y + GRID)
+			else if inputs[DOWN_KEY] and position_meeting(Unit.x, Unit.y + GRID, obj_wall)
 				to = 3
 		}
 		else {
