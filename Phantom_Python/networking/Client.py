@@ -1,17 +1,26 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Client
+   
+"""
+
+#Imports
 import struct
 import threading
 import socket
 
-from NetworkConstants import receive_codes, handshake_codes
+from NetworkConstants import receive_codes, handshake_codes, network_codes
 
+__author__ = "Gabriel Frey"
 
+#Classes
 class Client(threading.Thread):
     def __init__(self, connection, address, server):
         threading.Thread.__init__(self)
 
         self.connection = connection                        # Connection Information
         self.address = address                              # Client Address Properties
-        self.server = server                                # Reference to main server
+        self.Server = server                                # Reference to main server
         self.connected = True                               # Connection status
         self.handshake = handshake_codes['UNKNOWN']         # Handshake status defaulted to unknown
         self.user = None                                    # Clients each have a user for the game
@@ -70,5 +79,5 @@ class Client(threading.Thread):
             TODO: Pass actual server as reference so we can modify it
         """
         print("Disconnected from {0}:{1}".format(self.address[0], self.address[1]))
-        self.server.users.remove(self)
+        self.Server.clients.remove(self)
         self.connected = False

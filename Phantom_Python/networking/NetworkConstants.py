@@ -13,3 +13,6 @@ handshake_codes = {
     "COMPLETED": 2
 }
 
+network_codes = {
+    "GAME_ID": 126
+}
