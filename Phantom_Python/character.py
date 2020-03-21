@@ -7,7 +7,7 @@
 #imports
 import action as act
 from pyexcel_ods import get_data
-import copy
+from relationships import add_relation
 
 __author__ = "Gabriel Frey"
 
@@ -22,7 +22,9 @@ def load_characters():
     character_amount = len(data["characters"])
     #start in row 1 to skip headers
     for i in range(1, character_amount, 3):
-        add_character(data["characters"], i)
+        #check for empty row
+        if len(data["characters"][i]) > 0:
+            add_character(data["characters"], i)
     
     #print results
     print("load_characters results:")
@@ -37,57 +39,47 @@ def add_character(data, index):
     try:
         char_type = character_type[data[index][1]]
         #character entry
-        Base_Character = Character(name, char_type, float(data[index][2]), float(data[index][3]), float(data[index][4]), data[index + 1][1:], data[index + 2][1:])
+        Base = Base_Character(name, char_type, float(data[index][2]), float(data[index][3]), float(data[index][4]), float(data[index][5]), data[index + 1][1:], data[index + 2][1:])
         #character.set_available_actions()
     except KeyError:
         print("Error: Character {} creation failed. {} is not a valid type.".format(name, data[index][1]))
     else:
         #add name reference
-        character_dict[name] = Base_Character
+        character_dict[name] = Base
 	
-def create_character(name):
+def create_character(name, Unit):
     #check if character is loaded
     try:
         index = character_dict[name]
     except:
-        print("Erro: Character {} not in Character Dictionary".format(name))
+        print("Error: Character {} not in Character Dictionary".format(name))
         return -1
     else:
-        return copy.deepcopy(character_dict[name])
-    
-class Character:
-    def __init__(self, name, char_type, attack, defense, speed, available_actions, starting_actions):
+        #copy.deepcopy(character_dict[name])
+        c = character_dict[name]
+        return Character(c.name, c.char_type, c.hp, c.attack, c.defense, c.speed, c.available_actions, c.starting_actions, Unit)
+
+#Classes
+class Base_Character:
+    def __init__(self, name, char_type, hp, attack, defense, speed, available_actions, starting_actions):
         self.name = name
         self.char_type = char_type
         self.attack = attack
         self.defense = defense
         self.speed = speed
         self.available_actions = available_actions
+        self.starting_actions = starting_actions
         
         #four sets for the four action classes
         self.actions = [set(), set(), set(), set()]
         #add actions
         for action in starting_actions:
-            self.add_action(action) 
-        
-        #TODO - add external
-        hp = 100
-        attack_multiplier = 1.0
-        defense_multiplier = 5
-        character_type = 0
+            self.add_action(action)
         
         self.character_type = character_type
         #[hp, hp_temp, dmg taken this turn]
-        self.hp = [hp, 0, 0]
-        #[attack_multiplier, attack_temp]
-        self.attack = [attack_multiplier, 0]
-        #[defense_multiplier, defenser_temp]
-        self.defense = [defense_multiplier, 0]
-        #[ongoing damage, number of turns]
-        self.persistent_damage = [0, 0]
-        #[befrieneded, intimidated, fled, stunned]
-        self.results = [False, False, False, False]
-        
+        self.hp = hp
+    
     def __str__(self):
         return(self.name)
     
@@ -103,6 +95,16 @@ class Character:
             print("Added action {} index: {}".format(action_name, index))
         else:
             print("Error: Action could not be added: {}".format(action_name))
+
+class Character(Base_Character):
+    def __init__(self, name, char_type, hp, attack, defense, speed, available_actions, starting_actions, Unit):
+        #invoking the __init__ of the parent class  
+        Base_Character.__init__(self, name, char_type, hp, attack, defense, speed, available_actions, starting_actions)
+        
+        self.Unit = Unit
+        
+        #relationship_id
+        self.relationship_id = add_relation(60)
     
     def check_action(self, action_name):
         index = act.action_dict.get(action_name, -1)
@@ -140,9 +142,12 @@ class Character:
                     row_string += "{:13}".format("")
             #counter
             row += 1
-            print(row_string)
-
-    def get_do_list(self):
-        #[number on team, relationship ID
-        [0, 0, self.character_type, self.hp, self.attack, self.defense, self.persistent_damage, self.results[0], self.results[1], self.results[2], self.results[3]]
-                
+            print(row_string)      
+    
+    def get_type(self):
+        return self.char_type
+    
+    def get_team_index(self):
+        for i in range(len(self.Unit.characters)):
+            if self.Unit.characters[i] == self:
+                return i

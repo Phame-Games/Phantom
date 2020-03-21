@@ -55,6 +55,15 @@ def add_action(action_data):
         #add action
         action_list.append(action)
 
+def get_action(action_index):
+    action = []
+    try:
+        action = action_list[action_index].action
+    except IndexError:
+        print("Action index {} is not inside the action list!".format(action_index))
+        action = action_list[action_dict["none"]].action
+    return action
+
 #specific action
 class Action:
     def __init__(self, ad):
