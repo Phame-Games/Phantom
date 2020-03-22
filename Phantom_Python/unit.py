@@ -52,7 +52,7 @@ class Unit:
         return out
     
     def set_character_relations(self, relations):
-        print("Setting relationships for {}'s characters:".format(self.name))
+        print(f"Setting relationships for {self.name}'s characters:")
         print("Characters: ", self.characters)
         print("New relation values: ", relations)
         
