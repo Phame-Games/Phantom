@@ -743,14 +743,6 @@
             }
         },
         {
-            "Key": "b9cc71f2-0237-4a55-b14b-edbd3f61ef84",
-            "Value": {
-                "id": "e993cbf9-2d04-438e-b2c9-0bb2f8e857a4",
-                "resourcePath": "objects\\obj_client_python\\obj_client_python.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "ba657cb4-192f-4795-a4e7-dbbe31fea796",
             "Value": {
                 "id": "e50d98d1-77aa-4b0c-af05-66a246a6db0b",

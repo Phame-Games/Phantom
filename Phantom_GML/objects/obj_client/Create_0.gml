@@ -15,10 +15,6 @@ Player = noone
 //set by obj_networking
 player_name = ""
 
-#region Python client
-Client_Python = instance_create_layer(0, 0, LAY, obj_client_python)
-#endregion
-
 #region Networking
 //disconnectBuffer - buffer before asking to disconnect
 disconnectBuffer = 60;
