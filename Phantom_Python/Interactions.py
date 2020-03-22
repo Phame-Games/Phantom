@@ -244,10 +244,10 @@ def do_actions(player1, player2, character1, character2, action1, action2):
 			attack = action1[1][0]
 		else:
 			attack = action1[1][1]
-		character1[4][0] += attack[0]
-		character1[4][1] = attack[1]
-		character2[4][0] += attack[2]
-		character2[4][1] += attack[3]
+		character1[4][0] += attack[1]
+		character1[4][1] = attack[3]
+		character2[4][0] += attack[0]
+		character2[4][1] += attack[2]
 		#------------------END Attack---------------------------#
 
 		#--------------------Defense----------------------------#
@@ -256,12 +256,12 @@ def do_actions(player1, player2, character1, character2, action1, action2):
 			defense = action1[2][0]
 		else:
 			defense = action1[2][1]
-		character1[5][0] += defense[0]
-		character1[5][1] += defense[1]
-		character2[5][0] += defense[2]
+		character1[5][0] += defense[1]
+		character1[5][1] += defense[3]
+		character2[5][0] += defense[0]
 		if character2[5][1] < 0:
 			character2[5][1] = 0
-		character2[5][1] += defense[3]
+		character2[5][1] += defense[2]
 		#------------------END Defense---------------------------#
 
 		#---------------------Stun----------------------------#

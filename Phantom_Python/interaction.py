@@ -9,6 +9,8 @@ import relationships as rels
 import action as act
 import Interactions
 
+import copy
+
 #graphics
 import tkinter
 
@@ -89,7 +91,8 @@ def choose_action(Unit):
             print("Action is not available for this character")
 
 def do_actions(Unit1, Unit2):
-    results = Interactions.do_actions(Unit1.get_do_list(Unit2), Unit2.get_do_list(Unit1), Unit1.get_character().get_do_list(), Unit2.get_character().get_do_list(), act.get_action(Unit1.get_action()), act.get_action(Unit2.get_action()))
+    results = Interactions.do_actions(Unit1.get_do_list(Unit2), Unit2.get_do_list(Unit1), Unit1.get_character().get_do_list(), Unit2.get_character().get_do_list(), copy.deepcopy(act.get_action(Unit1.get_action())), copy.deepcopy(act.get_action(Unit2.get_action())))
+
     #interpret results
     #[player1, player2, character1, character2]
     Unit1.set_do_results(Unit2, results[0])
@@ -126,6 +129,9 @@ def interaction(Unit1, Unit2):
         for Unit in units:
             Unit.reset()
         
+        input("Continue?")
+        update_debug(units)
+
         #Unit action
         unit_actions = []
         #get action choices
@@ -154,13 +160,17 @@ def interaction(Unit1, Unit2):
                 if unit_actions[index] == 3:
                     switch_character(units[index])
         #Do an Action
+        update_debug(units)
         if 4 in unit_action_types:
             #choose actions
             for index in range(len(unit_actions)):
                 if unit_actions[index] in {4, 2}:
                     print(unit_actions[index])
-                    choose_action(units[index])
-            
+                    choose_action(units[index]) 
+
+            update_debug(units)
+            input("Continue?")
+
             #do action
             do_actions(units[0], units[1])
             
@@ -324,16 +334,20 @@ class dUnit:
         self.lbl_rels = tkinter.Label(self.win, text = "Notorieties: {}".format([self.Unit.notoriety, self.wUnit.notoriety]))
         self.lbl_noto = tkinter.Label(self.win, text = "Character Relations: {}".format(self.Unit.get_character_relation_list()))
         self.lbl_chars = tkinter.Label(self.win, text = "{}'s Character Info".format(self.wUnit.get_name()))
-        self.character_labels = []
+        self.unit_labels = []
+        self.unit_labels.append(tkinter.Label(self.win, text = f"Action: {act.get_action(self.wUnit.get_action())}"))
 
         self.lbl_name.grid(column = 0)
         self.lbl_team.grid(row = 1)
         self.lbl_relID.grid(row = 2)
         self.lbl_rels.grid(row = 3)
         self.lbl_noto.grid(row = 4)
-        self.lbl_chars.grid(row = 5)
+        for i in range(len(self.unit_labels)):
+            self.unit_labels[i].grid(row = 5 + i)
+        self.lbl_chars.grid(row = 5 + len(self.unit_labels))
 
-        ii = 0
+        self.character_labels = []
+        ii = len(self.unit_labels)
         for Character in self.wUnit.characters:
             labels = []
             labels.append(tkinter.Label(self.win, text = "{}'s Debug Info".format(Character.Character.name)))
@@ -359,6 +373,9 @@ class dUnit:
         self.lbl_rels.configure(text = "Notorieties: {}".format([self.Unit.notoriety, self.wUnit.notoriety]))
         self.lbl_noto.configure(text = "Character Relations: {}".format(self.Unit.get_character_relation_list()))
         self.lbl_chars.configure(text = "{}'s Character Info".format(self.wUnit.get_name()))
+
+        self.unit_labels[0].configure(text = f"Action: {act.get_action(self.wUnit.get_action())}")
+
         i = 0
         for labels in self.character_labels:
             wCharacter = self.wUnit.characters[i]
