@@ -48,7 +48,7 @@ class Unit:
         for Character in self.characters:
             out.append(find_relationship(self.relationship_id, Character.relationship_id))
             
-        print("{}'s Character Relation List: ".format(self.name), out)#debug
+        print(f"{self.name, out}'s Character Relation List: {out}")#debug
         return out
     
     def set_character_relations(self, relations):
