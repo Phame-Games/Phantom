@@ -12,8 +12,6 @@ import Interactions
 #graphics
 import tkinter
 
-import threading
-
 __author__ = "Gabriel Frey"
 
 #Functions
@@ -99,6 +97,11 @@ def do_actions(Unit1, Unit2):
     Unit1.get_character().set_do_results(results[2])
     Unit2.get_character().set_do_results(results[3])
 
+def update_debug(units):
+    #update all debug windows
+    for Unit in units:
+        Unit.Debug.update()
+
 def interaction(Unit1, Unit2):
     '''main interaction function
     '''
@@ -117,6 +120,8 @@ def interaction(Unit1, Unit2):
     print("##############################")
     
     while(continue_interaction):
+        update_debug(units)
+
         #reset all temporary variables
         for Unit in units:
             Unit.reset()
@@ -184,6 +189,9 @@ class wUnit:
         self.characters = []
         for Character in Unit.characters:
             self.characters.append(wCharacter(Character))
+
+        #create debug window to follow
+        self.Debug = dUnit(self)
     
     def reset(self):
         self.action = 0#none action
@@ -260,10 +268,6 @@ class wCharacter:
         self.persistent_damage = [0, 0]
         #[befrieneded, intimidated, fled, stunned]
         self.results = [False, False, False, False]
-
-        #create debug window to follow
-        debug = dCharacter(self)
-        debug.start()
     
     #Interaction functions
     def get_do_list(self):
@@ -308,10 +312,72 @@ class wCharacter:
     def print_actions(self):
         return(self.Character.print_actions())
 
-class dCharacter(threading.Thread):
-    def __init__(self, wCharacter):
-        threading.Thread.__init__(self)
-        self.wCharacter = wCharacter
+class dUnit:
+    def __init__(self, wUnit):
+        self.wUnit = wUnit
+        self.win = tkinter.Tk()
+        self.Unit = self.wUnit.Unit
+        self.win.title(self.wUnit.get_name())
+        self.lbl_name = tkinter.Label(self.win, text = "{}'s Debug Info".format(self.wUnit.get_name()))
+        self.lbl_team = tkinter.Label(self.win, text = "Team: {}".format(len(self.Unit.characters) > 1))
+        self.lbl_relID = tkinter.Label(self.win, text = "Relationship ID: {}".format(self.Unit.relationship_id))
+        self.lbl_rels = tkinter.Label(self.win, text = "Notorieties: {}".format([self.Unit.notoriety, self.wUnit.notoriety]))
+        self.lbl_noto = tkinter.Label(self.win, text = "Character Relations: {}".format(self.Unit.get_character_relation_list()))
+        self.lbl_chars = tkinter.Label(self.win, text = "{}'s Character Info".format(self.wUnit.get_name()))
+        self.character_labels = []
 
-    def run(self):
-        print(self.wCharacter.results)
+        self.lbl_name.grid(column = 0)
+        self.lbl_team.grid(row = 1)
+        self.lbl_relID.grid(row = 2)
+        self.lbl_rels.grid(row = 3)
+        self.lbl_noto.grid(row = 4)
+        self.lbl_chars.grid(row = 5)
+
+        ii = 0
+        for Character in self.wUnit.characters:
+            labels = []
+            labels.append(tkinter.Label(self.win, text = "{}'s Debug Info".format(Character.Character.name)))
+            labels.append(tkinter.Label(self.win, text = "Team Index: {}".format(Character.Character.get_team_index())))
+            labels.append(tkinter.Label(self.win, text = "HP: {}".format([Character.Character.hp, Character.hp_temp, Character.turn_dmg])))
+            labels.append(tkinter.Label(self.win, text = "Attack: {}".format([Character.Character.attack, Character.attack])))
+            labels.append(tkinter.Label(self.win, text = "Defense: {}".format([Character.Character.defense, Character.defense])))
+            labels.append(tkinter.Label(self.win, text = "Persistent damage: {}".format(Character.persistent_damage)))
+
+            #make all visible
+            for i in range(len(labels)):
+                labels[i].grid(row = 6 + ii)
+                ii += 1
+            self.character_labels.append(labels)
+        #self.win.mainloop()
+
+        self.win.minsize(256, 256)
+
+    def update(self):
+        self.lbl_name.configure(text = "{}'s Debug Info".format(self.wUnit.get_name()))
+        self.lbl_team.configure(text = "Team: {}".format(len(self.Unit.characters) > 1))
+        self.lbl_relID.configure(text = "Relationship ID: {}".format(self.Unit.relationship_id))
+        self.lbl_rels.configure(text = "Notorieties: {}".format([self.Unit.notoriety, self.wUnit.notoriety]))
+        self.lbl_noto.configure(text = "Character Relations: {}".format(self.Unit.get_character_relation_list()))
+        self.lbl_chars.configure(text = "{}'s Character Info".format(self.wUnit.get_name()))
+        i = 0
+        for labels in self.character_labels:
+            wCharacter = self.wUnit.characters[i]
+            i += 1
+            labels[0].configure(text = "{}'s Debug Info".format(wCharacter.Character.name))
+            labels[1].configure(text = "Team Index: {}".format(wCharacter.Character.get_team_index()))
+            labels[2].configure(text = "HP: {}".format([wCharacter.Character.hp, wCharacter.hp_temp, wCharacter.turn_dmg]))
+            labels[3].configure(text = "Attack: {}".format([wCharacter.Character.attack, wCharacter.attack]))
+            labels[4].configure(text = "Defense: {}".format([wCharacter.Character.defense, wCharacter.defense]))
+            labels[5].configure(text = "Persistent damage: {}".format(wCharacter.persistent_damage))
+
+        '''
+        print("{}'s Debug Info".format(self.get_name()))
+        print("Team: ", len(self.Unit.characters) > 1)
+        print("Relationship ID: ", self.Unit.relationship_id)
+        print("Relationships: ", [self.Unit.relationship, self.relationship])
+        print("Notorieties: ", [self.Unit.notoriety, self.notoriety])
+        print("Character Relations: ", self.Unit.get_character_relation_list())
+        print("{}'s Character Info".format(self.get_name()))
+        for Character in self.characters:
+            Character.print_debug()
+        '''
