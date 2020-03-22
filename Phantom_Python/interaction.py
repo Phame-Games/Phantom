@@ -9,6 +9,11 @@ import relationships as rels
 import action as act
 import Interactions
 
+#graphics
+import tkinter
+
+import threading
+
 __author__ = "Gabriel Frey"
 
 #Functions
@@ -97,7 +102,7 @@ def do_actions(Unit1, Unit2):
 def interaction(Unit1, Unit2):
     '''main interaction function
     '''
-    
+
     #setup interaction
     continue_interaction = True
     units = []   
@@ -255,6 +260,10 @@ class wCharacter:
         self.persistent_damage = [0, 0]
         #[befrieneded, intimidated, fled, stunned]
         self.results = [False, False, False, False]
+
+        #create debug window to follow
+        debug = dCharacter(self)
+        debug.start()
     
     #Interaction functions
     def get_do_list(self):
@@ -298,3 +307,11 @@ class wCharacter:
     
     def print_actions(self):
         return(self.Character.print_actions())
+
+class dCharacter(threading.Thread):
+    def __init__(self, wCharacter):
+        threading.Thread.__init__(self)
+        self.wCharacter = wCharacter
+
+    def run(self):
+        print(self.wCharacter.results)
