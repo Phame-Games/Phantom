@@ -32,7 +32,7 @@ def load_characters():
     print(character_dict)
 
 def add_character(data, index):
-    print("Load character: " + str(data[index:index + 3]))
+    print(f"Load character: {str(data[index:index + 3])}")
     #attempt to create character
     name = data[index][0]
     
