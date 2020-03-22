@@ -63,7 +63,7 @@ class Unit:
         print("Selected Character: " + str(self.characters[self.sel_character]))
         print("Character List:")
         for i in range(len(self.characters)):
-            print("{}: {}".format(i, str(self.characters[i])))
+            print(f"{i}: {self.characters[i]}")
     
     def switch_character(self, index):
         self.sel_character = index
