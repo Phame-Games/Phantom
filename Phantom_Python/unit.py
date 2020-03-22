@@ -37,7 +37,7 @@ class Unit:
         if character != -1:
             self.characters.append(character)
         else:
-            print("Adding character {} failed.".format(character_name))
+            print(f"Adding character {character_name} failed.")
     
     def get_character(self):
         return self.characters[self.sel_character]
