@@ -42,7 +42,7 @@ def add_character(data, index):
         Base = Base_Character(name, char_type, float(data[index][2]), float(data[index][3]), float(data[index][4]), float(data[index][5]), data[index + 1][1:], data[index + 2][1:])
         #character.set_available_actions()
     except KeyError:
-        print("Error: Character {} creation failed. {} is not a valid type.".format(name, data[index][1]))
+        print(f"Error: Character {name} creation failed. {data[index][1]} is not a valid type.")
     else:
         #add name reference
         character_dict[name] = Base
