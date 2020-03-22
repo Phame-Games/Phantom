@@ -285,7 +285,7 @@ class wCharacter:
     
     #Debug
     def print_debug(self):
-        print("{}'s Debug Info".format(self.Character.name))
+        print(f"{self.Character.name}'s Debug Info")
         print("Team Index: ", self.Character.get_team_index())
         print("HP: ", [self.Character.hp, self.hp_temp, self.turn_dmg])
         print("Attack: ", [self.Character.attack, self.attack])
