@@ -43,5 +43,6 @@ def main():
 
     inter.interaction(units[0], units[1])
 
+print()
 if __name__ == "__main__":
     main()
