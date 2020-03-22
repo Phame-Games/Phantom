@@ -52,7 +52,7 @@ def create_character(name, Unit):
     try:
         index = character_dict[name]
     except:
-        print("Error: Character {} not in Character Dictionary".format(name))
+        print(f"Error: Character {name} not in Character Dictionary")
         return -1
     else:
         #copy.deepcopy(character_dict[name])
